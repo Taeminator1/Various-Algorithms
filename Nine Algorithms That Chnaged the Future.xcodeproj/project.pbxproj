@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3411606A26613B1600AB00DC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411606926613B1600AB00DC /* main.swift */; };
 		3411607226613B5700AB00DC /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411607126613B5700AB00DC /* Page.swift */; };
+		3462798D266354C2003AD31B /* DataStructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3462798B266354C0003AD31B /* DataStructure.framework */; };
+		3462798E266354C3003AD31B /* DataStructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3462798B266354C0003AD31B /* DataStructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -21,12 +23,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		3462798F266354C3003AD31B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3462798E266354C3003AD31B /* DataStructure.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3411606626613B1500AB00DC /* Nine Algorithms That Chnaged the Future */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Nine Algorithms That Chnaged the Future"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3411606926613B1600AB00DC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3411607126613B5700AB00DC /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		3462798B266354C0003AD31B /* DataStructure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DataStructure.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3462798D266354C2003AD31B /* DataStructure.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				3411606826613B1500AB00DC /* Nine Algorithms That Chnaged the Future */,
+				3462798926635487003AD31B /* Frameworks */,
 				3411606726613B1500AB00DC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +81,14 @@
 			path = "Nine Algorithms That Chnaged the Future";
 			sourceTree = "<group>";
 		};
+		3462798926635487003AD31B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3462798B266354C0003AD31B /* DataStructure.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -75,6 +99,7 @@
 				3411606226613B1500AB00DC /* Sources */,
 				3411606326613B1500AB00DC /* Frameworks */,
 				3411606426613B1500AB00DC /* CopyFiles */,
+				3462798F266354C3003AD31B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,6 +276,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LGU69RG34G;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -262,6 +291,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LGU69RG34G;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
