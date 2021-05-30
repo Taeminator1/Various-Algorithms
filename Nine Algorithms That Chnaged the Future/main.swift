@@ -100,6 +100,5 @@ p15.setOutcomingPages(p0)
 var ps: [Page] = [p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15]
 p0.randomSurferTrickSimulator(ps, surfPossiblity: 15, repeatNumber: 100000)
 for i in 0 ..< ps.count {
-//    ps[i].displayReferedCount()
-    print("\(i): \(ps[i].referedCount / 1000)")
+    print("\(ps[i].referedCount)")
 }

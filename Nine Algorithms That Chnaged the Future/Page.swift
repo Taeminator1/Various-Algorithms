@@ -30,7 +30,10 @@ class Page
             page.incomingPagesCount += 1
         }
     }
-    
+}
+
+extension Page
+{
     func setOutcomingPages(_ pages: Page...) {
         for page in pages {
             outcomingPages.append(page)
@@ -68,24 +71,44 @@ class Page
         loop: while repeatCount < repeatNumber && !pageQueue.isEmpty() {
             let popedPage: Page = pageQueue.pop()!.getData()
             
-            for page in popedPage.outcomingPages {
-                var outComingPage: Page = page
-                if Page.isPossible(surfPossiblity)! {
-                    var tmpPage: Page = pages[Int.random(in: 0 ..< pagesCount)]
-                    while outComingPage.urlString == tmpPage.urlString {
+            if Page.isPossible(surfPossiblity)! {                   // Random Surfer
+                var tmpPage: Page = pages[Int.random(in: 0 ..< pagesCount)]
+                var isLinked: Bool = true
+                while isLinked {
+                    isLinked = false
+                    if popedPage.urlString == tmpPage.urlString {   // 현재 페이지를 다시 선택하지 않도록
+                        isLinked = true
                         tmpPage = pages[Int.random(in: 0 ..< pagesCount)]
+                        continue
                     }
-                    
-                    outComingPage = tmpPage
+
+                    for p in popedPage.outcomingPages {             // 현재 페이지가 참조하는 페이지를 선택하지 않도록
+                        if p.urlString == tmpPage.urlString {
+                            isLinked = true
+                            tmpPage = pages[Int.random(in: 0 ..< pagesCount)]
+                            break
+                        }
+                    }
                 }
-                
-                pageQueue.append(Node(outComingPage))
-                outComingPage.referedCount += 1
+                pageQueue.append(Node(tmpPage))
+                tmpPage.referedCount += 1
                 repeatCount += 1
+                if repeatCount == repeatNumber { break loop }
+                continue
+            }
+            else {
+                for page in popedPage.outcomingPages {
+                    pageQueue.append(Node(page))
+                    page.referedCount += 1
+                    repeatCount += 1
+                    if repeatCount == repeatNumber { break loop }
+                }
             }
         }
     }
-    
+}
+
+extension Page {
     static func isPossible(_ possiblity: Int) -> Bool? {
         if possiblity < 0 || possiblity > 100 {
             print("possiblity is out of range")
