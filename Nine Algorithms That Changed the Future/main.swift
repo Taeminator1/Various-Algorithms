@@ -108,52 +108,7 @@ for i in 0 ..< ps.count {
 */
 
 // MARK: - Lossless Compression
-// 문자열 입력 받기
 let str: String = "bab bdca adb ba daba ad ab acab ca ab"
-
-/// 문자열을 구성하는 문자들에 대한 빈도수 구하기
-var charFreqs: Dictionary<Character, Int> = [:]
-str.forEach {
-    if charFreqs[$0] == nil {
-        charFreqs.updateValue(1, forKey: $0)
-    }
-    else {
-        charFreqs[$0]! += 1
-    }
-}
-print(charFreqs)
-
-// 각각의 빈도수에 대한 허프만 코드 구하기
-var priorityQueue: PriorityQueue = PriorityQueue<HuffmanNode>(handler: <)
-charFreqs.forEach {
-    priorityQueue.insert(data: HuffmanNode($0.1, $0.0))
-}
-
-while priorityQueue.getCount() != 1 {
-    let left: HuffmanNode = priorityQueue.pop()!.getData()
-    let right: HuffmanNode = priorityQueue.pop()!.getData()
-    print("l: \(left.getData()), r: \(right.getData())")
-    
-    let tmpHuffmanNode = HuffmanNode(left.getData() + right.getData())
-    tmpHuffmanNode.setLeft(left)
-    tmpHuffmanNode.setRight(right)
-    priorityQueue.insert(data: tmpHuffmanNode)
-}
-
-var root: HuffmanNode = priorityQueue.pop()!.getData()
-
-var huffmanCodes: [Character: String] = [:]
-func makeHuffmanCode(_ start: HuffmanNode, _ str: String) {
-    if start.getRight() == nil {
-        huffmanCodes.updateValue(str, forKey: start.getChar()!)
-    }
-    else {
-        makeHuffmanCode(start.getLeft()!, str + "0")
-        makeHuffmanCode(start.getRight()!, str + "1")
-    }
-}
-
-makeHuffmanCode(root, "")
-print(huffmanCodes)
+print(huffmanCoding(input: str))
 
 
