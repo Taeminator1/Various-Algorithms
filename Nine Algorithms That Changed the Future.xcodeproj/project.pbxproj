@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340967BA266D352000A79672 /* DataStructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 340967B8266D351A00A79672 /* DataStructure.framework */; };
+		340967BB266D352000A79672 /* DataStructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 340967B8266D351A00A79672 /* DataStructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3411606A26613B1600AB00DC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411606926613B1600AB00DC /* main.swift */; };
 		3411607226613B5700AB00DC /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411607126613B5700AB00DC /* Page.swift */; };
 		34674A6C266C9FFF00BFECA2 /* HuffmanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34674A6B266C9FFF00BFECA2 /* HuffmanNode.swift */; };
-		34FD4D7C266CB1BC00FE8F40 /* DataStructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34FD4D7A266CB1A800FE8F40 /* DataStructure.framework */; };
-		34FD4D7D266CB1BC00FE8F40 /* DataStructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34FD4D7A266CB1A800FE8F40 /* DataStructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,7 +30,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				34FD4D7D266CB1BC00FE8F40 /* DataStructure.framework in Embed Frameworks */,
+				340967BB266D352000A79672 /* DataStructure.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,11 +38,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		340967B8266D351A00A79672 /* DataStructure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DataStructure.framework; sourceTree = "<group>"; };
 		3411606626613B1500AB00DC /* Nine Algorithms That Changed the Future */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Nine Algorithms That Changed the Future"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3411606926613B1600AB00DC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3411607126613B5700AB00DC /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		34674A6B266C9FFF00BFECA2 /* HuffmanNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuffmanNode.swift; sourceTree = "<group>"; };
-		34FD4D7A266CB1A800FE8F40 /* DataStructure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DataStructure.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34FD4D7C266CB1BC00FE8F40 /* DataStructure.framework in Frameworks */,
+				340967BA266D352000A79672 /* DataStructure.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +87,7 @@
 		3462798926635487003AD31B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				34FD4D7A266CB1A800FE8F40 /* DataStructure.framework */,
+				340967B8266D351A00A79672 /* DataStructure.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
