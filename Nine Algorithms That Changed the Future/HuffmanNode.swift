@@ -61,7 +61,7 @@ class HuffmanNode: Comparable {
     }
 }
 
-func huffmanCoding(input: String) -> String {
+func compress(input: String) -> String {
     // 문자열을 구성하는 문자들에 대한 빈도수 구하기
     var charFreqs: Dictionary<Character, Int> = [:]
     input.forEach {
@@ -182,3 +182,77 @@ extension String {
     }
 }
 
+func extract(input: String) -> String {
+    var index: Int = 0
+    
+    // 입력 받은 문자열에서 허프만 코드의 개수 추출
+    while input[index ..< index + 1] != "\n" {
+        index += 1
+    }
+    let huffmanCodeCount: Int = Int(input[0 ..< index])!
+    index += 1
+    
+    print(huffmanCodeCount)
+    
+    // 입력 받은 문자열에서 허프만 코드 추출
+    var huffmanCodes: [String: Character] = [:]
+    while huffmanCodes.count < huffmanCodeCount {
+        let char: Character = Character(input[index ..< index + 1])
+        index += 1
+        
+        let tmpIndex = index
+        while input[index ..< index + 1] != " " {
+            index += 1
+        }
+        
+        let code: String = input[tmpIndex ..< index]
+        huffmanCodes.updateValue(char, forKey: code)
+        
+        index += 1
+    }
+    index += 1
+    
+    print(huffmanCodes)
+    
+    // 입력 받은 문자열에서 원래 문자열의 길이 추출
+    let tmpIndex = index
+    while input[index ..< index + 1] != "\n" {
+        index += 1
+    }
+    let strCount: Int = Int(input[tmpIndex ..< index])!
+    index += 1
+    
+    // 변환된 문자열의 문자들에 대해 아스키 코드 값으로 변환
+    var integers: [UInt32] = []
+    while index < input.count {
+        integers.append(UnicodeScalar(input[index ..< index + 1])!.value)
+        index += 1
+    }
+    print(integers)
+    
+    // 각각의 아스키 코드 값에 대한 이진 문자열로 변환
+    var binaryStr: String = ""
+    integers.forEach {
+        let tmpStr: String = String($0, radix: 2)
+        Array(0 ..< 8 - tmpStr.count).forEach { _ in
+            binaryStr += "0"
+        }
+        binaryStr += tmpStr
+    }
+    print(binaryStr)
+    
+    // 허프만 코드를 이용해 이진 문자열을 원래 문자열로 변환
+    var res: String = ""
+    var tmpStr: String = ""
+    var i: Int = 0
+    while res.count < strCount {
+        tmpStr += binaryStr[i ..< i + 1]
+        if huffmanCodes[tmpStr] != nil {
+            res += String(huffmanCodes[tmpStr]!)
+            tmpStr = ""
+        }
+        i += 1
+    }
+    
+    return res
+}

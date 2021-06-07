@@ -109,6 +109,6 @@ for i in 0 ..< ps.count {
 
 // MARK: - Lossless Compression
 let str: String = "bab bdca adb ba daba ad ab acab ca ab"
-print(huffmanCoding(input: str))
-
-
+var str2: String = compress(input: str)
+print(str2)
+print(extract(input: str2))
