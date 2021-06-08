@@ -13,6 +13,8 @@
 		3411607226613B5700AB00DC /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411607126613B5700AB00DC /* Page.swift */; };
 		34674A6C266C9FFF00BFECA2 /* HuffmanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34674A6B266C9FFF00BFECA2 /* HuffmanNode.swift */; };
 		34830D79266F75FF00DDB5A4 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34830D78266F75FF00DDB5A4 /* Compressor.swift */; };
+		34830D7D266F9B3400DDB5A4 /* Extractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34830D7C266F9B3400DDB5A4 /* Extractor.swift */; };
+		34830D7F266FA51400DDB5A4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34830D7E266FA51400DDB5A4 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +47,8 @@
 		3411607126613B5700AB00DC /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		34674A6B266C9FFF00BFECA2 /* HuffmanNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuffmanNode.swift; sourceTree = "<group>"; };
 		34830D78266F75FF00DDB5A4 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
+		34830D7C266F9B3400DDB5A4 /* Extractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extractor.swift; sourceTree = "<group>"; };
+		34830D7E266FA51400DDB5A4 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				3411607126613B5700AB00DC /* Page.swift */,
 				34674A6B266C9FFF00BFECA2 /* HuffmanNode.swift */,
 				34830D78266F75FF00DDB5A4 /* Compressor.swift */,
+				34830D7C266F9B3400DDB5A4 /* Extractor.swift */,
+				34830D7E266FA51400DDB5A4 /* Extension.swift */,
 			);
 			path = "Nine Algorithms That Changed the Future";
 			sourceTree = "<group>";
@@ -155,6 +161,8 @@
 			files = (
 				34830D79266F75FF00DDB5A4 /* Compressor.swift in Sources */,
 				3411607226613B5700AB00DC /* Page.swift in Sources */,
+				34830D7D266F9B3400DDB5A4 /* Extractor.swift in Sources */,
+				34830D7F266FA51400DDB5A4 /* Extension.swift in Sources */,
 				34674A6C266C9FFF00BFECA2 /* HuffmanNode.swift in Sources */,
 				3411606A26613B1600AB00DC /* main.swift in Sources */,
 			);
