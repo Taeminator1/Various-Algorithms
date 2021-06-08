@@ -109,6 +109,14 @@ for i in 0 ..< ps.count {
 
 // MARK: - Lossless Compression
 let str: String = "bab bdca adb ba daba ad ab acab ca ab"
-var str2: String = compress(input: str)
+let str2: String = compress(str)
 print(str2)
-print(extract(input: str2))
+let str3: String = extract(str2)
+print(str3)
+
+if str == str3 {
+    print("OK")
+}
+else {
+    print("FAIL")
+}

@@ -9,19 +9,18 @@ import Foundation
 import DataStructure
 
 class HuffmanNode: Comparable {
-    var data: Int       // Frequency of Character
-    var char: Character?
+    var value: Int       // Frequency of Character
+    var key: Character?
     var left: HuffmanNode?
     var right: HuffmanNode?
     
-    init(_ data: Int) {
-        self.data = data
-//        print("\(data) node has been created")
+    init(_ value: Int) {
+        self.value = value
     }
     
-    init(_ data: Int, _ char: Character) {
-        self.data = data
-        self.char = char
+    init(_ value: Int, _ key: Character) {
+        self.value = value
+        self.key = key
     }
     
     func setLeft(_ node: HuffmanNode?) {
@@ -32,12 +31,12 @@ class HuffmanNode: Comparable {
         self.right = node
     }
     
-    func getData() -> Int {
-        return self.data
+    func getValue() -> Int {
+        return self.value
     }
     
-    func getChar() -> Character? {
-        return self.char
+    func getKey() -> Character? {
+        return self.key
     }
     
     func getLeft() -> HuffmanNode? {
@@ -49,112 +48,53 @@ class HuffmanNode: Comparable {
     }
     
     static func < (lhs: HuffmanNode, rhs: HuffmanNode) -> Bool {
-        lhs.getData() < rhs.getData()
+        lhs.getValue() < rhs.getValue()
     }
     
     static func == (lhs: HuffmanNode, rhs: HuffmanNode) -> Bool {
-        lhs.getData() == rhs.getData()
-    }
-    
-    deinit {
-//        print("\(data) \(char) node has been dismissed")
+        lhs.getValue() == rhs.getValue()
     }
 }
 
-func compress(input: String) -> String {
-    // 문자열을 구성하는 문자들에 대한 빈도수 구하기
-    var charFreqs: Dictionary<Character, Int> = [:]
+// 문자열 압축
+func compress(_ input: String) -> String {
+    let huffmanCodes: [Character: String] = makeHuffmanCodes(input)
+    let convertedStr = convertStr(input, huffmanCodes)
+    return makeForm(input, convertedStr, huffmanCodes)
+}
+
+// 허프만 코드 구하기
+func makeHuffmanCodes(_ input: String) -> [Character: String] {
+    var keyFreqs: Dictionary<Character, Int> = [:]
     input.forEach {
-        if charFreqs[$0] == nil {
-            charFreqs.updateValue(1, forKey: $0)
+        if keyFreqs[$0] == nil {
+            keyFreqs.updateValue(1, forKey: $0)
         }
         else {
-            charFreqs[$0]! += 1
+            keyFreqs[$0]! += 1
         }
     }
-//    print(charFreqs)
     
     // 각각의 빈도수에 대한 허프만 코드 구하기
     let priorityQueue: PriorityQueue = PriorityQueue<HuffmanNode>(handler: <)
-    charFreqs.forEach {
-        priorityQueue.insert(data: HuffmanNode($0.1, $0.0))
-    }
+    keyFreqs.forEach { priorityQueue.insert(data: HuffmanNode($0.1, $0.0)) }
     
     while priorityQueue.getCount() != 1 {
         let left: HuffmanNode = priorityQueue.pop()!.getData()
         let right: HuffmanNode = priorityQueue.pop()!.getData()
         
-//        print("l: \(left.getData()), r: \(right.getData())")
-        
-        let tmpHuffmanNode = HuffmanNode(left.getData() + right.getData())
-        tmpHuffmanNode.setLeft(left)
-        tmpHuffmanNode.setRight(right)
-        priorityQueue.insert(data: tmpHuffmanNode)
+        let tmp = HuffmanNode(left.getValue() + right.getValue())
+        tmp.setLeft(left)
+        tmp.setRight(right)
+        priorityQueue.insert(data: tmp)
     }
     
     let root: HuffmanNode = priorityQueue.pop()!.getData()
-//    print(root.getRight()?.getLeft()?.getData())
-    let huffmanCodes: [Character: String] = makeHuffmanCode(root)
-//    print(huffmanCodes)
-    
-    // 입력된 문자열을 허프만 코드로 변경하여 이진 문자열 생성
-    let str2: String = str.map { huffmanCodes[$0]! }.reduce("") { $0 + $1 }
-    print(str2)
-    
-    // 각 이진 문자열 8개씩 쪼개 십진 문자열로 변경
-    var integers: [Int] = []
-    var index: Int = 0
-    while index < str2.count {
-        integers.append(Int(str2[index ..< index + 8], radix: 2)!)
-        index += 8
-    }
-    print(integers)
-    
-    if index != str2.count {
-        index -= 8
-        integers.removeLast()
-        
-        var tmpString: String = ""
-        while index < str2.count {
-            tmpString += str2[index ..< index + 1]
-            index += 1
-        }
-        
-        while index % 8 != 0 {
-            tmpString += "0"
-            index += 1
-        }
-        
-        integers.append(Int(tmpString, radix: 2)!)
-    }
-    
-    var res: String = ""
-    
-    // 허프만 코드의 개수
-    res += String(huffmanCodes.count)
-    res += "\n"
-    // 허프만 코드
-    huffmanCodes.forEach {
-        res += "\($0.key)\($0.value) "
-    }
-    res += "\n"
-    // 원래 문자열의 길이
-    res += String(input.count)
-    res += "\n"
-    // 숫자열을 문자열 ascii로 변환
-    integers.forEach {
-        res += String(UnicodeScalar($0)!)
-    }
-    
-    return res
-}
-
-func makeHuffmanCode(_ start: HuffmanNode) -> [Character: String] {
     var huffmanCodes: [Character: String] = [:]
     
     func DFS(_ start: HuffmanNode, _ str: String) {
-        if start.getChar() != nil {
-            huffmanCodes.updateValue(str, forKey: start.getChar()!)
+        if start.getKey() != nil {
+            huffmanCodes.updateValue(str, forKey: start.getKey()!)
         }
         else {
             DFS(start.getLeft()!, str + "0")
@@ -162,97 +102,171 @@ func makeHuffmanCode(_ start: HuffmanNode) -> [Character: String] {
         }
     }
     
-    DFS(start, "")
+    DFS(root, "")
     
     return huffmanCodes
 }
 
-// https://stackoverflow.com/questions/39677330/how-does-string-substring-work-in-swift
-extension String {
-    subscript(_ range: CountableRange<Int>) -> String {
-        let start = index(startIndex, offsetBy: max(0, range.lowerBound))
-        let end = index(start, offsetBy: min(self.count - range.lowerBound,
-                                             range.upperBound - range.lowerBound))
-        return String(self[start..<end])
+// 입력 받은 문자열을 허프만 코드를 이용해 반환
+func convertStr(_ input: String, _ huffmanCodes: [Character: String]) -> String {
+    // 입력된 문자열을 허프만 코드를 이용해 변환
+    let binStr: String = input.map { huffmanCodes[$0]! }.reduce("") { $0 + $1 }
+    let binStrCnt: Int = binStr.count
+    
+    // 이진 문자열을 8개씩 쪼개 십진 문자열로 변경
+    var decimals: [Int] = []
+    var index: Int = 0
+    while index < binStrCnt {
+        decimals.append(Int(binStr[index ..< index + 8], radix: 2)!)
+        index += 8
     }
-
-    subscript(_ range: CountablePartialRangeFrom<Int>) -> String {
-        let start = index(startIndex, offsetBy: max(0, range.lowerBound))
-         return String(self[start...])
+    
+    // 마지막 원소가 8개로 구성이 안 될경우 처리
+    if index != binStrCnt {
+        index -= 8
+        decimals.removeLast()        // 8자리가 안 된 마지막 원소 제거
+        
+        var tmp: String = binStr[index ..< index + binStrCnt]
+        // 8자리가 되도록 뒷 부분을 0으로 채움
+        while index % 8 != 0 {
+            tmp += "0"
+            index += 1
+        }
+        
+        decimals.append(Int(tmp, radix: 2)!)
     }
+    
+    // 쪼개진 십진수들을 유니코드 문자열로 반환
+    return decimals.map { String(UnicodeScalar($0)!) }.reduce("") { $0 + $1 }
 }
 
-func extract(input: String) -> String {
+// 양식에 맞춰 문자열 반환
+func makeForm(_ originalStr: String, _ convertedStr: String, _ huffmanCodes: [Character: String]) -> String {
+    var res: String = ""
+    
+    // 허프만 코드의 개수
+    res += String(huffmanCodes.count)
+    res += "\n"
+    
+    // 허프만 코드
+    huffmanCodes.forEach { res += "\($0.key)\($0.value) " }
+    res += "\n"
+    
+    // 원래 문자열의 길이
+    res += String(originalStr.count)
+    res += "\n"
+    // 숫자열을 문자열 ascii로 변환
+    res += convertedStr
+    
+    return res
+}
+
+// 문자열 추출
+func extract(_ input: String) -> String {
     var index: Int = 0
     
-    // 입력 받은 문자열에서 허프만 코드의 개수 추출
-    while input[index ..< index + 1] != "\n" {
+    let huffmanCodeCnt: Int = getNumber(input, from: &index)
+    let huffmanCodes: [String: Character] = findHuffmanCodes(input, from: &index, huffmanCodeCnt)
+    let strCnt: Int = getNumber(input, from: &index)
+    return returnStr(input, from: &index, strCnt, huffmanCodes)
+}
+
+// 시작 인덱스로부터 숫자 구하기
+func getNumber(_ input: String, from index: inout Int) -> Int {
+    let startIndex: Int = index
+    while input[index] != "\n" {
         index += 1
     }
-    let huffmanCodeCount: Int = Int(input[0 ..< index])!
+    let res: Int = Int(input[startIndex ..< index])!
     index += 1
     
-    print(huffmanCodeCount)
-    
-    // 입력 받은 문자열에서 허프만 코드 추출
+    return res
+}
+
+// 허프만 코드 찾기
+func findHuffmanCodes(_ input: String, from index: inout Int, _ huffmanCodeCnt: Int) -> [String: Character] {
     var huffmanCodes: [String: Character] = [:]
-    while huffmanCodes.count < huffmanCodeCount {
-        let char: Character = Character(input[index ..< index + 1])
+    while huffmanCodes.count < huffmanCodeCnt {
+        let char: Character = Character(input[index])
         index += 1
         
-        let tmpIndex = index
+        let startIndex = index
         while input[index ..< index + 1] != " " {
             index += 1
         }
         
-        let code: String = input[tmpIndex ..< index]
+        let code: String = input[startIndex ..< index]
         huffmanCodes.updateValue(char, forKey: code)
-        
         index += 1
     }
     index += 1
     
-    print(huffmanCodes)
-    
-    // 입력 받은 문자열에서 원래 문자열의 길이 추출
-    let tmpIndex = index
-    while input[index ..< index + 1] != "\n" {
-        index += 1
-    }
-    let strCount: Int = Int(input[tmpIndex ..< index])!
-    index += 1
-    
-    // 변환된 문자열의 문자들에 대해 아스키 코드 값으로 변환
-    var integers: [UInt32] = []
+    return huffmanCodes
+}
+
+// 입력받은 문자열을 허프만 코드를 이용해 변환
+func returnStr(_ input: String, from index: inout Int, _ strCnt: Int, _ huffmanCodes: [String: Character]) -> String {
+    // 입력된 유니코드 문자열을 십진수들로 변환
+    var decimals: [UInt32] = []
     while index < input.count {
-        integers.append(UnicodeScalar(input[index ..< index + 1])!.value)
+        decimals.append(UnicodeScalar(input[index])!.value)
         index += 1
     }
-    print(integers)
     
-    // 각각의 아스키 코드 값에 대한 이진 문자열로 변환
-    var binaryStr: String = ""
-    integers.forEach {
-        let tmpStr: String = String($0, radix: 2)
-        Array(0 ..< 8 - tmpStr.count).forEach { _ in
-            binaryStr += "0"
+    // 십진수들을 이진 문자열로 변환
+    var binStr: String = ""
+    decimals.forEach {
+        let tmp: String = String($0, radix: 2)
+        
+        // 8자리가 되도록 앞 부분을 0으로 채움
+        for _ in 0 ..< (8 - tmp.count) {
+            binStr += "0"
         }
-        binaryStr += tmpStr
+        binStr += tmp
     }
-    print(binaryStr)
     
     // 허프만 코드를 이용해 이진 문자열을 원래 문자열로 변환
     var res: String = ""
-    var tmpStr: String = ""
-    var i: Int = 0
-    while res.count < strCount {
-        tmpStr += binaryStr[i ..< i + 1]
-        if huffmanCodes[tmpStr] != nil {
-            res += String(huffmanCodes[tmpStr]!)
-            tmpStr = ""
+    var tmp: String = ""
+    var index2: Int = 0
+    while res.count < strCnt {
+        tmp += binStr[index2]
+        if huffmanCodes[tmp] != nil {
+            res += String(huffmanCodes[tmp]!)
+            tmp = ""
         }
-        i += 1
+        index2 += 1
     }
     
     return res
 }
+
+
+// https://stackoverflow.com/questions/24092884/get-nth-character-of-a-string-in-swift-programming-language
+extension String {
+
+    var length: Int {
+        return count
+    }
+
+    subscript (i: Int) -> String {
+        return self[i ..< i + 1]
+    }
+
+    func substring(fromIndex: Int) -> String {
+        return self[min(fromIndex, length) ..< length]
+    }
+
+    func substring(toIndex: Int) -> String {
+        return self[0 ..< max(0, toIndex)]
+    }
+
+    subscript (r: Range<Int>) -> String {
+        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
+                                            upper: min(length, max(0, r.upperBound))))
+        let start = index(startIndex, offsetBy: range.lowerBound)
+        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+        return String(self[start ..< end])
+    }
+}
+
