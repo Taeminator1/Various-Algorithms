@@ -127,6 +127,7 @@ func convertStr(_ input: String, _ huffmanCodes: [Character: String]) -> String 
         decimals.removeLast()        // 8자리가 안 된 마지막 원소 제거
         
         var tmp: String = binStr[index ..< index + binStrCnt]
+        index = binStrCnt
         // 8자리가 되도록 뒷 부분을 0으로 채움
         while index % 8 != 0 {
             tmp += "0"
