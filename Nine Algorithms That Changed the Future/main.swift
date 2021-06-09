@@ -108,15 +108,29 @@ for i in 0 ..< ps.count {
 */
 
 // MARK: - Lossless Compression
-let str: String = "bab bdca adb ba daba ad ab acab ca ab"
-var a: Compressor = Compressor(str)
-let str2 = a.convertedStrInForm
-var b: Extractor = Extractor(str2)
-let str3 = b.extractOriginalStr()
+//let str: String = "bab bdca adb ba daba ad ab acab ca ab"
+//var a: Compressor = Compressor(str)
+//let str2 = a.convertedStrInForm
+//var b: Extractor = Extractor(str2)
+//let str3 = b.extractOriginalStr()
+//
+//print(str2)
+//print(str3)
+//
+//if str == str3 {
+//    print("true")
+//}
 
-print(str2)
-print(str3)
+let originalStr: String = readFileFromDesktop(fileName: "origin")!
+let compressor = Compressor(originalStr)
+saveFileIntoDesktop(fileName: "conversion", contents: compressor.convertedStrInForm)
 
-if str == str3 {
-    print("true")
+let convertedStr: String = readFileFromDesktop(fileName: "conversion")!
+let extractor = Extractor(convertedStr)
+saveFileIntoDesktop(fileName: "return", contents: extractor.extractOriginalStr())
+
+let returnedStr: String = readFileFromDesktop(fileName: "return")!
+
+if originalStr == returnedStr {
+    print("SAME")
 }
