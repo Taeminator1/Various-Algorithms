@@ -11,9 +11,11 @@ import DataStructure
 struct Compressor {
     typealias CodesType = [Character: String]
     var input: String
+    var pNumber: Int        // positional number
     
-    init(_ input: String) {
+    init(_ input: String, pNumber: Int = 7) {
         self.input = input
+        self.pNumber = pNumber
     }
     
     var convertedStrInForm: String {
@@ -39,7 +41,7 @@ struct Compressor {
     }
     
     // 허프만 코드 구하기
-    func makeHuffmanCodes() -> [Character: String] {
+    private func makeHuffmanCodes() -> [Character: String] {
         var keyFreqs: Dictionary<Character, Int> = [:]
         input.forEach {
             if keyFreqs[$0] == nil {
@@ -88,23 +90,23 @@ struct Compressor {
         let binStr: String = input.map { huffmanCodes[$0]! }.reduce("") { $0 + $1 }
         let binStrCnt: Int = binStr.count
         
-        // 이진 문자열을 8개씩 쪼개 십진 문자열로 변경
+        // 이진 문자열을 pNumber 개씩 쪼개 십진 문자열로 변경
         var decimals: [Int] = []
         var index: Int = 0
         while index < binStrCnt {
-            decimals.append(Int(binStr[index ..< index + 8], radix: 2)!)
-            index += 8
+            decimals.append(Int(binStr[index ..< index + pNumber], radix: 2)!)
+            index += pNumber
         }
         
-        // 마지막 원소가 8개로 구성이 안 될경우 처리
+        // 마지막 원소가 pNumber 개로 구성이 안 될경우 처리
         if index != binStrCnt {
-            index -= 8
-            decimals.removeLast()        // 8자리가 안 된 마지막 원소 제거
+            index -= pNumber
+            decimals.removeLast()        // pNumber 자리가 안 된 마지막 원소 제거
             
             var tmp: String = binStr[index ..< index + binStrCnt]
             index = binStrCnt
-            // 8자리가 되도록 뒷 부분을 0으로 채움
-            while index % 8 != 0 {
+            // pNumber 자리가 되도록 뒷 부분을 0으로 채움
+            while index % pNumber != 0 {
                 tmp += "0"
                 index += 1
             }
@@ -112,7 +114,7 @@ struct Compressor {
             decimals.append(Int(tmp, radix: 2)!)
         }
         
-        // 쪼개진 십진수들을 유니코드 문자열로 반환
+        // 쪼개진 십진수들을 유니코드(아스키) 문자열로 반환
         return decimals.map { String(UnicodeScalar($0)!) }.reduce("") { $0 + $1 }
     }
 }

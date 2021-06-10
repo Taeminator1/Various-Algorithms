@@ -10,9 +10,11 @@ import Foundation
 struct Extractor {
     typealias CodesType = [String: Character]
     var input: String
+    var pNumber: Int        // positional number
     
-    init(_ input: String) {
+    init(_ input: String, pNumber: Int = 7) {
         self.input = input
+        self.pNumber = pNumber
     }
     
     func extractOriginalStr() -> String {
@@ -22,7 +24,7 @@ struct Extractor {
         let huffmanCodes: CodesType = findHuffmanCodes(from: &index, huffmanCodeCnt)
         let strCnt: Int = getNumber(from: &index)
         
-        // 입력된 유니코드 문자열을 십진수들로 변환
+        // 입력된 유니코드(아스키) 문자열을 십진수들로 변환
         var decimals: [UInt32] = []
         while index < input.count {
             decimals.append(UnicodeScalar(input[index])!.value)
@@ -34,8 +36,8 @@ struct Extractor {
         decimals.forEach {
             let tmp: String = String($0, radix: 2)
             
-            // 8자리가 되도록 앞 부분을 0으로 채움
-            for _ in 0 ..< (8 - tmp.count) {
+            // pNumber 자리가 되도록 앞 부분을 0으로 채움
+            for _ in 0 ..< (pNumber - tmp.count) {
                 binStr += "0"
             }
             binStr += tmp

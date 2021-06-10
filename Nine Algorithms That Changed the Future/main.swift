@@ -120,17 +120,64 @@ for i in 0 ..< ps.count {
 //if str == str3 {
 //    print("true")
 //}
-
+let pNumber: Int = 8
 let originalStr: String = readFileFromDesktop(fileName: "origin")!
-let compressor = Compressor(originalStr)
+let compressor = Compressor(originalStr, pNumber: pNumber)
 saveFileIntoDesktop(fileName: "conversion", contents: compressor.convertedStrInForm)
 
 let convertedStr: String = readFileFromDesktop(fileName: "conversion")!
-let extractor = Extractor(convertedStr)
+let extractor = Extractor(convertedStr, pNumber: pNumber)
 saveFileIntoDesktop(fileName: "return", contents: extractor.extractOriginalStr())
 
 let returnedStr: String = readFileFromDesktop(fileName: "return")!
 
 if originalStr == returnedStr {
     print("SAME")
+}
+else {
+    print("FAIL")
+}
+
+//let str: String = "bab bdca adcb ba daba ad ab acab ca ab dd"
+//var a: Compressor = Compressor(str)
+//let str2 = a.convertedStrInForm
+//var b: Extractor = Extractor(str2)
+//let str3 = b.extractOriginalStr()
+//
+//print(str2)
+//print(str3)
+//
+//
+//
+//
+//
+//
+
+
+//for i in 55295 ..< 57345 {
+//    if UnicodeScalar(i) != nil {
+//        print(i)
+//    }
+//}
+//for i in 57343 ..< 1114120 {
+//    if UnicodeScalar(i) == nil {
+//        print(i)
+//    }
+//}
+// 55296 ... 57343에 대응되는 유니코드 값은 nil 이다.
+// 1114112 ... 대응되는 유니코드 값은 nil 이다.
+
+
+print("1: \(UnicodeScalar(574))")
+print("2: \(UnicodeScalar(574)!.value)")
+print("3: \(UnicodeScalar(574)!.utf8)")
+print("4: \(String(UnicodeScalar(574)!))")
+//print("5: \()")
+//print(UnicodeScalar("Ⱦ̐"))
+
+if String(UnicodeScalar(574)!) == "Ⱦ̐" {
+    print("true")
+}
+else {
+    print("false")
 }
