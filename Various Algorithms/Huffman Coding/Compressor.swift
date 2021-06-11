@@ -20,7 +20,7 @@ struct Compressor {
     
     var convertedStrInForm: String {
         let huffmanCodes: CodesType = makeHuffmanCodes()
-        let convertedStr: String = convertStr(huffmanCodes)
+        let compressedStr: String = compressStr(huffmanCodes)
         var res: String = ""
         
         // 허프만 코드의 개수
@@ -34,26 +34,29 @@ struct Compressor {
         // 원래 문자열의 길이
         res += String(input.count)
         res += "\n"
-        // 숫자열을 문자열 ascii로 변환
-        res += convertedStr
+        
+        // 압축된 문자열
+        res += compressedStr
         
         return res
     }
     
     // 허프만 코드 구하기
     private func makeHuffmanCodes() -> [Character: String] {
+        if input == "" { return [:] }
+        
         var keyFreqs: Dictionary<Character, Int> = [:]
         input.forEach {
-            if keyFreqs[$0] == nil {
+            if keyFreqs[$0] == nil {        // 새로운 문자 업데이트
                 keyFreqs.updateValue(1, forKey: $0)
             }
-            else {
+            else {                          // 빈도 수 증가
                 keyFreqs[$0]! += 1
             }
         }
         
         // 각각의 빈도수에 대한 허프만 코드 구하기
-        let priorityQueue: PriorityQueue = PriorityQueue<HuffmanNode>(handler: <)
+        let priorityQueue: PriorityQueue = PriorityQueue<HuffmanNode>(handler: <)       // 최소 힙
         keyFreqs.forEach { priorityQueue.insert(data: HuffmanNode($0.1, $0.0)) }
         
         while priorityQueue.getCount() != 1 {
@@ -67,7 +70,7 @@ struct Compressor {
         }
         
         let root: HuffmanNode = priorityQueue.pop()!.getData()
-        var huffmanCodes: [Character: String] = [:]
+        var huffmanCodes: Dictionary<Character, String> = [:]
         
         func DFS(_ start: HuffmanNode, _ str: String) {
             if start.getKey() != nil {
@@ -85,7 +88,7 @@ struct Compressor {
     }
     
     // 입력 받은 문자열을 허프만 코드를 이용해 반환
-    private func convertStr(_ huffmanCodes: CodesType) -> String {
+    func compressStr(_ huffmanCodes: CodesType) -> String {
         // 입력된 문자열을 허프만 코드를 이용해 변환
         let binStr: String = input.map { huffmanCodes[$0]! }.reduce("") { $0 + $1 }
         let binStrCnt: Int = binStr.count

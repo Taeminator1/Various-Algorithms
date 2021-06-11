@@ -43,7 +43,7 @@
 
 /* Begin PBXFileReference section */
 		340967B8266D351A00A79672 /* DataStructure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DataStructure.framework; sourceTree = "<group>"; };
-		3411606626613B1500AB00DC /* Nine Algorithms That Changed the Future */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Nine Algorithms That Changed the Future"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3411606626613B1500AB00DC /* Various Algorithms */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Various Algorithms"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3411606926613B1600AB00DC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3411607126613B5700AB00DC /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		34674A6B266C9FFF00BFECA2 /* HuffmanNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuffmanNode.swift; sourceTree = "<group>"; };
@@ -65,10 +65,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		340F4D1A267362F800C7F1E7 /* Page Rank */ = {
+			isa = PBXGroup;
+			children = (
+				3411607126613B5700AB00DC /* Page.swift */,
+			);
+			path = "Page Rank";
+			sourceTree = "<group>";
+		};
+		340F4D1B2673630300C7F1E7 /* Huffman Coding */ = {
+			isa = PBXGroup;
+			children = (
+				34674A6B266C9FFF00BFECA2 /* HuffmanNode.swift */,
+				34830D78266F75FF00DDB5A4 /* Compressor.swift */,
+				34830D7C266F9B3400DDB5A4 /* Extractor.swift */,
+			);
+			path = "Huffman Coding";
+			sourceTree = "<group>";
+		};
 		3411605D26613B1500AB00DC = {
 			isa = PBXGroup;
 			children = (
-				3411606826613B1500AB00DC /* Nine Algorithms That Changed the Future */,
+				3411606826613B1500AB00DC /* Various Algorithms */,
 				3462798926635487003AD31B /* Frameworks */,
 				3411606726613B1500AB00DC /* Products */,
 			);
@@ -77,23 +95,21 @@
 		3411606726613B1500AB00DC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3411606626613B1500AB00DC /* Nine Algorithms That Changed the Future */,
+				3411606626613B1500AB00DC /* Various Algorithms */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3411606826613B1500AB00DC /* Nine Algorithms That Changed the Future */ = {
+		3411606826613B1500AB00DC /* Various Algorithms */ = {
 			isa = PBXGroup;
 			children = (
 				3411606926613B1600AB00DC /* main.swift */,
-				3411607126613B5700AB00DC /* Page.swift */,
-				34674A6B266C9FFF00BFECA2 /* HuffmanNode.swift */,
-				34830D78266F75FF00DDB5A4 /* Compressor.swift */,
-				34830D7C266F9B3400DDB5A4 /* Extractor.swift */,
+				340F4D1A267362F800C7F1E7 /* Page Rank */,
+				340F4D1B2673630300C7F1E7 /* Huffman Coding */,
 				34F3B4D92670EABB00C4059A /* FileHelper.swift */,
 				34830D7E266FA51400DDB5A4 /* Extension.swift */,
 			);
-			path = "Nine Algorithms That Changed the Future";
+			path = "Various Algorithms";
 			sourceTree = "<group>";
 		};
 		3462798926635487003AD31B /* Frameworks */ = {
@@ -107,9 +123,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3411606526613B1500AB00DC /* Nine Algorithms That Changed the Future */ = {
+		3411606526613B1500AB00DC /* Various Algorithms */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3411606D26613B1600AB00DC /* Build configuration list for PBXNativeTarget "Nine Algorithms That Changed the Future" */;
+			buildConfigurationList = 3411606D26613B1600AB00DC /* Build configuration list for PBXNativeTarget "Various Algorithms" */;
 			buildPhases = (
 				3411606226613B1500AB00DC /* Sources */,
 				3411606326613B1500AB00DC /* Frameworks */,
@@ -120,9 +136,9 @@
 			);
 			dependencies = (
 			);
-			name = "Nine Algorithms That Changed the Future";
+			name = "Various Algorithms";
 			productName = "Nine Algorithms That Chnaged the Future";
-			productReference = 3411606626613B1500AB00DC /* Nine Algorithms That Changed the Future */;
+			productReference = 3411606626613B1500AB00DC /* Various Algorithms */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -139,7 +155,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3411606126613B1500AB00DC /* Build configuration list for PBXProject "Nine Algorithms That Changed the Future" */;
+			buildConfigurationList = 3411606126613B1500AB00DC /* Build configuration list for PBXProject "Various Algorithms" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -152,7 +168,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3411606526613B1500AB00DC /* Nine Algorithms That Changed the Future */,
+				3411606526613B1500AB00DC /* Various Algorithms */,
 			);
 		};
 /* End PBXProject section */
@@ -323,7 +339,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3411606126613B1500AB00DC /* Build configuration list for PBXProject "Nine Algorithms That Changed the Future" */ = {
+		3411606126613B1500AB00DC /* Build configuration list for PBXProject "Various Algorithms" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3411606B26613B1600AB00DC /* Debug */,
@@ -332,7 +348,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3411606D26613B1600AB00DC /* Build configuration list for PBXNativeTarget "Nine Algorithms That Changed the Future" */ = {
+		3411606D26613B1600AB00DC /* Build configuration list for PBXNativeTarget "Various Algorithms" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3411606E26613B1600AB00DC /* Debug */,

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import DataStructure
 
 class HuffmanNode: Comparable {
     var value: Int       // Frequency of Character

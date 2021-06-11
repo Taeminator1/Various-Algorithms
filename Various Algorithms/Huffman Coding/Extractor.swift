@@ -18,17 +18,17 @@ struct Extractor {
     }
     
     func extractOriginalStr() -> String {
-        var index: Int = 0
+        var mIndex: Int = 0             // main index
         
-        let huffmanCodeCnt: Int = getNumber(from: &index)
-        let huffmanCodes: CodesType = findHuffmanCodes(from: &index, huffmanCodeCnt)
-        let strCnt: Int = getNumber(from: &index)
+        let huffmanCodeCnt: Int = getNumber(from: &mIndex)
+        let huffmanCodes: CodesType = findHuffmanCodes(from: &mIndex, huffmanCodeCnt)
+        let strCnt: Int = getNumber(from: &mIndex)
         
         // 입력된 유니코드(아스키) 문자열을 십진수들로 변환
         var decimals: [UInt32] = []
-        while index < input.count {
-            decimals.append(UnicodeScalar(input[index])!.value)
-            index += 1
+        while mIndex < input.count {
+            decimals.append(UnicodeScalar(input[mIndex])!.value)
+            mIndex += 1
         }
         
         // 십진수들을 이진 문자열로 변환
@@ -46,14 +46,14 @@ struct Extractor {
         // 허프만 코드를 이용해 이진 문자열을 원래 문자열로 변환
         var res: String = ""
         var tmp: String = ""
-        var index2: Int = 0
+        var bIndex: Int = 0             // 이진 문자열 조회를 위한 index
         while res.count < strCnt {
-            tmp += binStr[index2]
+            tmp += binStr[bIndex]
             if huffmanCodes[tmp] != nil {
                 res += String(huffmanCodes[tmp]!)
                 tmp = ""
             }
-            index2 += 1
+            bIndex += 1
         }
         
         return res
