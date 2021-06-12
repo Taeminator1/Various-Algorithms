@@ -20,8 +20,8 @@ struct Extractor {
     func extractOriginalStr() -> String {
         var mIndex: Int = 0             // main index
         
-        let huffmanCodeCnt: Int = getNumber(from: &mIndex)
-        let huffmanCodes: CodesType = findHuffmanCodes(from: &mIndex, huffmanCodeCnt)
+        let huffmanCodesCnt: Int = getNumber(from: &mIndex)
+        let huffmanCodes: CodesType = findHuffmanCodes(from: &mIndex, huffmanCodesCnt)
         let strCnt: Int = getNumber(from: &mIndex)
         
         // 입력된 유니코드(아스키) 문자열을 십진수들로 변환
@@ -43,7 +43,7 @@ struct Extractor {
             binStr += tmp
         }
         
-        // 허프만 코드를 이용해 이진 문자열을 원래 문자열로 변환
+        // 허프만 코드와 원래 문자열의 길이를 이용해 이진 문자열을 원래 문자열로 변환
         var res: String = ""
         var tmp: String = ""
         var bIndex: Int = 0             // 이진 문자열 조회를 위한 index
@@ -72,9 +72,9 @@ struct Extractor {
     }
 
     // 허프만 코드 찾기
-    private func findHuffmanCodes(from index: inout Int, _ huffmanCodeCnt: Int) -> [String: Character] {
+    private func findHuffmanCodes(from index: inout Int, _ huffmanCodesCnt: Int) -> [String: Character] {
         var huffmanCodes: [String: Character] = [:]
-        while huffmanCodes.count < huffmanCodeCnt {
+        while huffmanCodes.count < huffmanCodesCnt {
             let char: Character = Character(input[index])
             index += 1
             

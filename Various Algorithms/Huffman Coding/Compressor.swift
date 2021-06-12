@@ -42,7 +42,7 @@ struct Compressor {
     }
     
     // 허프만 코드 구하기
-    private func makeHuffmanCodes() -> [Character: String] {
+    private func makeHuffmanCodes() -> CodesType {
         if input == "" { return [:] }
         
         var keyFreqs: Dictionary<Character, Int> = [:]
@@ -93,7 +93,7 @@ struct Compressor {
         let binStr: String = input.map { huffmanCodes[$0]! }.reduce("") { $0 + $1 }
         let binStrCnt: Int = binStr.count
         
-        // 이진 문자열을 pNumber 개씩 쪼개 십진 문자열로 변경
+        // 이진 문자열을 pNumber 개씩 쪼개 십진수로 변경
         var decimals: [Int] = []
         var index: Int = 0
         while index < binStrCnt {

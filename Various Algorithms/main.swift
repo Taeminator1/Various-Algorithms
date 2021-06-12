@@ -8,7 +8,7 @@
 import Foundation
 import DataStructure
 
-print("Hello, World!")
+//print("Hello, World!")
 
 // MARK: - Page Rank Test
 /*
@@ -107,77 +107,25 @@ for i in 0 ..< ps.count {
 }
 */
 
-// MARK: - Lossless Compression
-//let str: String = "bab bdca adb ba daba ad ab acab ca ab"
-//var a: Compressor = Compressor(str)
-//let str2 = a.convertedStrInForm
-//var b: Extractor = Extractor(str2)
-//let str3 = b.extractOriginalStr()
-//
-//print(str2)
-//print(str3)
-//
-//if str == str3 {
-//    print("true")
-//}
-let pNumber: Int = 8
+// MARK: - Lossless Compression Test
+// "origin" 파일을 불러와 문자열로 반환하여 압축한 후 "conversion" 파일 저장
+let pNumer: Int = 6
 let originalStr: String = readFileFromDesktop(fileName: "origin")!
-let compressor = Compressor(originalStr, pNumber: pNumber)
+let compressor = Compressor(originalStr, pNumber: pNumer)
 saveFileIntoDesktop(fileName: "conversion", contents: compressor.convertedStrInForm)
 
+// "conversion" 파일을 불러와 문자열로 반환하여 추출한 후 "return" 파일 저장
 let convertedStr: String = readFileFromDesktop(fileName: "conversion")!
-let extractor = Extractor(convertedStr, pNumber: pNumber)
+let extractor = Extractor(convertedStr, pNumber: pNumer)
 saveFileIntoDesktop(fileName: "return", contents: extractor.extractOriginalStr())
 
+// "return" 파일을 불러와 문자열로 반환
 let returnedStr: String = readFileFromDesktop(fileName: "return")!
 
+// 원래 문자와 return 파일의 문자열 비교
 if originalStr == returnedStr {
     print("SAME")
 }
 else {
-    print("FAIL")
-}
-
-//let str: String = "bab bdca adcb ba daba ad ab acab ca ab dd"
-//var a: Compressor = Compressor(str)
-//let str2 = a.convertedStrInForm
-//var b: Extractor = Extractor(str2)
-//let str3 = b.extractOriginalStr()
-//
-//print(str2)
-//print(str3)
-//
-//
-//
-//
-//
-//
-
-
-//for i in 55295 ..< 57345 {
-//    if UnicodeScalar(i) != nil {
-//        print(i)
-//    }
-//}
-//for i in 57343 ..< 1114120 {
-//    if UnicodeScalar(i) == nil {
-//        print(i)
-//    }
-//}
-// 55296 ... 57343에 대응되는 유니코드 값은 nil 이다.
-// 1114112 ... 대응되는 유니코드 값은 nil 이다.
-
-
-print("1: \(UnicodeScalar(574))")
-print("2: \(UnicodeScalar(574)!.value)")
-print("3: \(UnicodeScalar(574)!.utf8)")
-print("4: \(String(UnicodeScalar(574)!))")
-//print("5: \()")
-//print(UnicodeScalar("Ⱦ̐"))
-
-if String(UnicodeScalar(574)!) == "Ⱦ̐" {
-    print("true")
-}
-else {
-    print("false")
+    print("DIFFERENT")
 }
