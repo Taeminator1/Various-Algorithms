@@ -60,16 +60,16 @@ struct Compressor {
         keyFreqs.forEach { priorityQueue.insert(data: HuffmanNode($0.1, $0.0)) }
         
         while priorityQueue.getCount() != 1 {
-            let left: HuffmanNode = priorityQueue.pop()!.getData()
-            let right: HuffmanNode = priorityQueue.pop()!.getData()
+            let left: HuffmanNode = priorityQueue.pop()!.data
+            let right: HuffmanNode = priorityQueue.pop()!.data
             
             let tmp = HuffmanNode(left.getValue() + right.getValue())
-            tmp.setLeft(left)
-            tmp.setRight(right)
+            tmp.left = left
+            tmp.right = right
             priorityQueue.insert(data: tmp)
         }
         
-        let root: HuffmanNode = priorityQueue.pop()!.getData()
+        let root: HuffmanNode = priorityQueue.pop()!.data
         var huffmanCodes: Dictionary<Character, String> = [:]
         
         func DFS(_ start: HuffmanNode, _ str: String) {
@@ -77,8 +77,8 @@ struct Compressor {
                 huffmanCodes.updateValue(str, forKey: start.getKey()!)
             }
             else {
-                DFS(start.getLeft()!, str + "0")
-                DFS(start.getRight()!, str + "1")
+                DFS(start.left!, str + "0")
+                DFS(start.right!, str + "1")
             }
         }
         

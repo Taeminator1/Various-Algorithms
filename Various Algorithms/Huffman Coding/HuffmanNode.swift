@@ -8,8 +8,8 @@
 import Foundation
 
 class HuffmanNode: Comparable {
-    var value: Int       // Frequency of Character
-    var key: Character?
+    private var value: Int       // Frequency of Character
+    private var key: Character?
     var left: HuffmanNode?
     var right: HuffmanNode?
     
@@ -22,28 +22,12 @@ class HuffmanNode: Comparable {
         self.key = key
     }
     
-    func setLeft(_ node: HuffmanNode?) {
-        self.left = node
-    }
-    
-    func setRight(_ node: HuffmanNode?) {
-        self.right = node
-    }
-    
     func getValue() -> Int {
         return self.value
     }
     
     func getKey() -> Character? {
         return self.key
-    }
-    
-    func getLeft() -> HuffmanNode? {
-        return self.left
-    }
-    
-    func getRight() -> HuffmanNode? {
-        return self.right
     }
     
     static func < (lhs: HuffmanNode, rhs: HuffmanNode) -> Bool {

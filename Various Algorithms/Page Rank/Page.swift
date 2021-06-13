@@ -68,7 +68,7 @@ extension Page
         self.referedCount += 1
         var repeatCount: Int = 1
         
-        loop: while repeatCount < repeatNumber && !pageQueue.isEmpty() {
+        loop: while repeatCount < repeatNumber && !pageQueue.isEmpty {
             let popedPage: Page = pageQueue.pop()!.getData()
             
             if Page.isPossible(surfPossiblity)! {                   // Random Surfer

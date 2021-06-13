@@ -105,11 +105,12 @@ p0.randomSurferTrickSimulator(ps, surfPossiblity: 15, repeatNumber: 100000)
 for i in 0 ..< ps.count {
     print("\(ps[i].referedCount)")
 }
-*/
+ */
+
 
 // MARK: - Lossless Compression Test
 // "origin" 파일을 불러와 문자열로 반환하여 압축한 후 "conversion" 파일 저장
-let pNumer: Int = 6
+let pNumer: Int = 7
 let originalStr: String = readFileFromDesktop(fileName: "origin")!
 let compressor = Compressor(originalStr, pNumber: pNumer)
 saveFileIntoDesktop(fileName: "conversion", contents: compressor.convertedStrInForm)
