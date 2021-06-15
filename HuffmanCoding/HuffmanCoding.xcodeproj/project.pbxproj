@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34388F872678D02C00B36C07 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34388F862678D02C00B36C07 /* Compressor.swift */; };
+		34388F892678D03E00B36C07 /* Extractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34388F882678D03E00B36C07 /* Extractor.swift */; };
+		34388F8B2678D04D00B36C07 /* HuffmanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34388F8A2678D04D00B36C07 /* HuffmanNode.swift */; };
 		346B52222678A80B00EF5A7D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346B52212678A80B00EF5A7D /* main.swift */; };
-		346B52372678A8A100EF5A7D /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346B52342678A8A100EF5A7D /* Compressor.swift */; };
-		346B52382678A8A100EF5A7D /* Extractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346B52352678A8A100EF5A7D /* Extractor.swift */; };
-		346B52392678A8A100EF5A7D /* HuffmanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346B52362678A8A100EF5A7D /* HuffmanNode.swift */; };
 		346B523B2678A8B300EF5A7D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346B523A2678A8B300EF5A7D /* Extension.swift */; };
 		348955412678CD2300FF73EB /* DataStructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3489553D2678CD1E00FF73EB /* DataStructure.framework */; };
 		348955422678CD2300FF73EB /* DataStructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3489553D2678CD1E00FF73EB /* DataStructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -43,11 +43,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		34388F862678D02C00B36C07 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
+		34388F882678D03E00B36C07 /* Extractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extractor.swift; sourceTree = "<group>"; };
+		34388F8A2678D04D00B36C07 /* HuffmanNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuffmanNode.swift; sourceTree = "<group>"; };
 		346B521E2678A80B00EF5A7D /* HuffmanCoding */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HuffmanCoding; sourceTree = BUILT_PRODUCTS_DIR; };
 		346B52212678A80B00EF5A7D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		346B52342678A8A100EF5A7D /* Compressor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Compressor.swift; path = "../../Various Algorithms/Huffman Coding/Compressor.swift"; sourceTree = "<group>"; };
-		346B52352678A8A100EF5A7D /* Extractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extractor.swift; path = "../../Various Algorithms/Huffman Coding/Extractor.swift"; sourceTree = "<group>"; };
-		346B52362678A8A100EF5A7D /* HuffmanNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HuffmanNode.swift; path = "../../Various Algorithms/Huffman Coding/HuffmanNode.swift"; sourceTree = "<group>"; };
 		346B523A2678A8B300EF5A7D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		3489553D2678CD1E00FF73EB /* DataStructure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DataStructure.framework; sourceTree = "<group>"; };
 		3489553E2678CD1F00FF73EB /* FileRW.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FileRW.framework; sourceTree = "<group>"; };
@@ -66,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34388F8C2678D05B00B36C07 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				346B523A2678A8B300EF5A7D /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		346B52152678A80B00EF5A7D = {
 			isa = PBXGroup;
 			children = (
@@ -87,10 +95,10 @@
 			isa = PBXGroup;
 			children = (
 				346B52212678A80B00EF5A7D /* main.swift */,
-				346B52342678A8A100EF5A7D /* Compressor.swift */,
-				346B52352678A8A100EF5A7D /* Extractor.swift */,
-				346B52362678A8A100EF5A7D /* HuffmanNode.swift */,
-				346B523A2678A8B300EF5A7D /* Extension.swift */,
+				34388F8A2678D04D00B36C07 /* HuffmanNode.swift */,
+				34388F862678D02C00B36C07 /* Compressor.swift */,
+				34388F882678D03E00B36C07 /* Extractor.swift */,
+				34388F8C2678D05B00B36C07 /* Extension */,
 			);
 			path = HuffmanCoding;
 			sourceTree = "<group>";
@@ -163,10 +171,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				346B523B2678A8B300EF5A7D /* Extension.swift in Sources */,
-				346B52382678A8A100EF5A7D /* Extractor.swift in Sources */,
-				346B52372678A8A100EF5A7D /* Compressor.swift in Sources */,
+				34388F8B2678D04D00B36C07 /* HuffmanNode.swift in Sources */,
+				34388F872678D02C00B36C07 /* Compressor.swift in Sources */,
+				34388F892678D03E00B36C07 /* Extractor.swift in Sources */,
 				346B52222678A80B00EF5A7D /* main.swift in Sources */,
-				346B52392678A8A100EF5A7D /* HuffmanNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

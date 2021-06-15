@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34388F8E2678D0B000B36C07 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34388F8D2678D0B000B36C07 /* Page.swift */; };
 		348955522678CE9A00FF73EB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348955512678CE9A00FF73EB /* main.swift */; };
-		3489555A2678CEA900FF73EB /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348955592678CEA900FF73EB /* Page.swift */; };
 		348955602678CEDD00FF73EB /* DataStructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3489555D2678CED800FF73EB /* DataStructure.framework */; };
 		348955612678CEDD00FF73EB /* DataStructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3489555D2678CED800FF73EB /* DataStructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -37,9 +37,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		34388F8D2678D0B000B36C07 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		3489554E2678CE9A00FF73EB /* PageRank */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PageRank; sourceTree = BUILT_PRODUCTS_DIR; };
 		348955512678CE9A00FF73EB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		348955592678CEA900FF73EB /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Page.swift; path = "../../Various Algorithms/Page Rank/Page.swift"; sourceTree = "<group>"; };
 		3489555D2678CED800FF73EB /* DataStructure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DataStructure.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				348955512678CE9A00FF73EB /* main.swift */,
-				348955592678CEA900FF73EB /* Page.swift */,
+				34388F8D2678D0B000B36C07 /* Page.swift */,
 			);
 			path = PageRank;
 			sourceTree = "<group>";
@@ -147,8 +147,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3489555A2678CEA900FF73EB /* Page.swift in Sources */,
 				348955522678CE9A00FF73EB /* main.swift in Sources */,
+				34388F8E2678D0B000B36C07 /* Page.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
