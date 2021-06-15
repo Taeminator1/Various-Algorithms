@@ -1,0 +1,11 @@
+framework module FileRW {
+  umbrella header "FileRW.h"
+
+  export *
+  module * { export * }
+}
+
+module FileRW.Swift {
+    header "FileRW-Swift.h"
+    requires objc
+}
