@@ -15,7 +15,7 @@ extension Array {
     typealias ByType = (Element, Element) -> Bool
 }
 
-// Insertion Sort
+// MARK:- Insertion Sort
 extension Array where Self.Element : Comparable {
     
     func insertionSorted(by: ByType = (<)) -> [Element] {
@@ -42,7 +42,7 @@ extension Array where Self.Element : Comparable {
     }
 }
 
-// Selction Sort
+// MARK:- Selction Sort
 extension Array where Self.Element : Comparable {
     
     func selectionSorted(by: ByType = (<)) -> [Element] {
@@ -66,7 +66,7 @@ extension Array where Self.Element : Comparable {
     }
 }
 
-// Merge Sort
+// MARK:- Merge Sort
 extension Array where Self.Element : Comparable {
 
     func mergeSorted(by: ByType = (<)) -> [Element] {
@@ -127,9 +127,63 @@ extension Array where Self.Element : Comparable {
 }
 
 
+// MARK:- QuickSort
+extension Array where Self.Element : Comparable {
+
+    func QuickSorted(by: ByType = (<)) -> [Element] {
+        var res: [Element] = self
+        quickSortFunction(&res, 0, res.count - 1, by)
+        return res
+    }
+    
+    mutating func QuickSort(by: ByType = (<)) {
+        quickSortFunction(&self, 0, self.count - 1, by)
+    }
+    
+    private func quickSortFunction(_ input: inout [Element], _ startIndex: Int, _ lastIndex: Int, _ by: ByType) {
+        if startIndex < lastIndex {
+            let pivotIndex: Int = part(&input, startIndex, lastIndex, by)
+            quickSortFunction(&input, startIndex, pivotIndex - 1, by)
+            quickSortFunction(&input, pivotIndex + 1, lastIndex, by)
+        }
+    }
+
+    private func part(_ input: inout [Element], _ startIndex: Int, _ lastIndex: Int, _ by: ByType) -> Int {
+        let pivot: Element = input[startIndex]
+        var leftIndex: Int = startIndex + 1
+        var rightIndex: Int = lastIndex
+        
+        if leftIndex == rightIndex {
+            if input[leftIndex] < pivot {
+                input.swapAt(startIndex, rightIndex)
+            }
+        }
+        else {
+            while leftIndex < rightIndex {
+                
+                // 왼쪽 부분 비교할 때 또는 오른쪽 부분 비교할 때 등호가 한 군데 이상 있어야 함
+                // do-while로 하는게 더 효율적인가??
+//                while leftIndex < lastIndex && input[leftIndex] <= pivot {
+                while leftIndex < lastIndex && by(input[leftIndex], pivot) {
+                    leftIndex += 1
+                }
+                
+//                while leftIndex < lastIndex && input[rightIndex] > pivot {
+                while rightIndex > startIndex && !by(input[rightIndex], pivot) {
+                    rightIndex -= 1
+                }
+                if leftIndex < rightIndex {
+                    input.swapAt(leftIndex, rightIndex)
+                }
+            }
+            input.swapAt(startIndex, rightIndex)
+        }
+        return rightIndex
+    }
+}
+
 //var arr: [Int] = [11, 3, 4, 1, 2, 3, 6, 2, 4, 45, 5]
 var arr: [Int] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
-var sorted: [Int] = arr
 
 //print(arr.insertionSorted(by: >))
 //print(arr)
@@ -146,4 +200,8 @@ var sorted: [Int] = arr
 //arr.mergeSort(by: >)
 //print(arr)
 
+print(arr.QuickSorted(by: >))
+print(arr)
+arr.QuickSort(by: >)
+print(arr)
 
