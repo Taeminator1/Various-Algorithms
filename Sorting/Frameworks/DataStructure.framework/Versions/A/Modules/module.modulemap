@@ -1,0 +1,11 @@
+framework module DataStructure {
+  umbrella header "DataStructure.h"
+
+  export *
+  module * { export * }
+}
+
+module DataStructure.Swift {
+    header "DataStructure-Swift.h"
+    requires objc
+}

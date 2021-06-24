@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DataStructure
 
 print("Hello, World!")
 
@@ -14,6 +15,7 @@ print("Hello, World!")
 extension Array {
     typealias ByType = (Element, Element) -> Bool
 }
+
 
 // MARK:- Insertion Sort
 extension Array where Self.Element : Comparable {
@@ -42,6 +44,7 @@ extension Array where Self.Element : Comparable {
     }
 }
 
+
 // MARK:- Selction Sort
 extension Array where Self.Element : Comparable {
     
@@ -65,6 +68,7 @@ extension Array where Self.Element : Comparable {
         }
     }
 }
+
 
 // MARK:- Merge Sort
 extension Array where Self.Element : Comparable {
@@ -127,16 +131,16 @@ extension Array where Self.Element : Comparable {
 }
 
 
-// MARK:- QuickSort
+// MARK:- Quick Sort
 extension Array where Self.Element : Comparable {
 
-    func QuickSorted(by: ByType = (<)) -> [Element] {
+    func quickSorted(by: ByType = (<)) -> [Element] {
         var res: [Element] = self
         quickSortFunction(&res, 0, res.count - 1, by)
         return res
     }
     
-    mutating func QuickSort(by: ByType = (<)) {
+    mutating func quickSort(by: ByType = (<)) {
         quickSortFunction(&self, 0, self.count - 1, by)
     }
     
@@ -182,6 +186,31 @@ extension Array where Self.Element : Comparable {
     }
 }
 
+
+// MARK:- Heap Sort
+extension Array where Self.Element : Comparable {
+
+    func HeapSorted(by: @escaping ByType = (<)) -> [Element] {
+        return heapSortFunction(by)
+    }
+    
+    mutating func HeapSort(by: @escaping ByType = (<)) {
+        self = heapSortFunction(by)
+    }
+    
+    private func heapSortFunction(_ by: @escaping ByType) -> [Element] {
+        let heap: Heap = Heap<Element> {
+            by($0.data, $1.data)
+        }
+        var res: [Element] = []
+        
+        self.forEach { heap.insert(data: $0) }
+        while heap.count > 0 { res.append(heap.remove()!.data) }
+        
+        return res
+    }
+}
+
 //var arr: [Int] = [11, 3, 4, 1, 2, 3, 6, 2, 4, 45, 5]
 var arr: [Int] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
 
@@ -200,8 +229,12 @@ var arr: [Int] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
 //arr.mergeSort(by: >)
 //print(arr)
 
-print(arr.QuickSorted(by: >))
-print(arr)
-arr.QuickSort(by: >)
-print(arr)
+//print(arr.quickSorted(by: >))
+//print(arr)
+//arr.quickSort(by: >)
+//print(arr)
 
+print(arr.HeapSorted(by: >))
+print(arr)
+arr.HeapSort(by: >)
+print(arr)
