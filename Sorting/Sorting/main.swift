@@ -31,7 +31,7 @@ extension Array where Self.Element : Comparable {
     }
     
     private func insertionSortFunction(_ input: inout [Element], _ by: ByType) {
-        for i in 1 ..< input.count {
+        for i in 0 ..< input.count {        // 0부터 시작해야 빈 배열일 때 대응 가능
             var j: Int = i - 1
             let tmp = input[i]
             
@@ -190,11 +190,11 @@ extension Array where Self.Element : Comparable {
 // MARK:- Heap Sort
 extension Array where Self.Element : Comparable {
 
-    func HeapSorted(by: @escaping ByType = (<)) -> [Element] {
+    func heapSorted(by: @escaping ByType = (<)) -> [Element] {
         return heapSortFunction(by)
     }
     
-    mutating func HeapSort(by: @escaping ByType = (<)) {
+    mutating func heapSort(by: @escaping ByType = (<)) {
         self = heapSortFunction(by)
     }
     
@@ -211,12 +211,13 @@ extension Array where Self.Element : Comparable {
     }
 }
 
-//var arr: [Int] = [11, 3, 4, 1, 2, 3, 6, 2, 4, 45, 5]
-var arr: [Int] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
 
-//print(arr.insertionSorted(by: >))
+//var arr: [Int] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
+//var arr: [Int] = []
+
+//print(arr.insertionSorted(by: <))
 //print(arr)
-//arr.insertionSort(by: >)
+//arr.insertionSort(by: <)
 //print(arr)
 
 //print(arr.selectionSorted(by: >))
@@ -234,7 +235,7 @@ var arr: [Int] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
 //arr.quickSort(by: >)
 //print(arr)
 
-print(arr.HeapSorted(by: >))
-print(arr)
-arr.HeapSort(by: >)
-print(arr)
+//print(arr.heapSorted(by: >))
+//print(arr)
+//arr.heapSort(by: >)
+//print(arr)
