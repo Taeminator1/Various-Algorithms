@@ -212,6 +212,58 @@ extension Array where Self.Element : Comparable {
 }
 
 
+// MARK:- Radix Sort
+// 0을 포함하는 자연수(UnsignedInteger)에 대한 오름차순 정렬
+extension Array where Self.Element : UnsignedInteger {
+    func radixSorted() -> [Element] {
+        var res: [Element] = self
+        radixSortFunction(&res)
+        return res
+    }
+    
+    mutating func radixSort() {
+        radixSortFunction(&self)
+    }
+    
+    func radixSortFunction(_ input: inout [Element]) {
+        // 원소의 갯수가 0일 때 처리
+        guard let max = input.max() else { return }
+        
+        var repeatNumber: Int = findDigit(max) - 1
+        var buckets: [[Element]] = [[Element]](repeating: [Element](), count: 10)
+        var tmpBuckets: [[Element]] = [[Element]](repeating: [Element](), count: 10)
+        var tenSquare = 10
+        
+        input.forEach { tmpBuckets[Int($0) / 1 % 10].append($0) }
+        buckets = tmpBuckets
+        
+        while repeatNumber > 0 {
+            tmpBuckets = [[Element]](repeating: [Element](), count: 10)
+            
+            buckets.forEach { $0.forEach { tmpBuckets[Int($0) / tenSquare % 10].append($0) }}
+            buckets = tmpBuckets
+            
+            repeatNumber -= 1
+            tenSquare *= 10
+        }
+        
+        input = [Element]()
+        buckets.forEach { $0.forEach { input.append($0) }}      // buckets.forEach { input.append(contentsOf: $0) }
+    }
+    
+    private func findDigit(_ number: Element) -> Int {
+        var tmp: Element = number
+        var res: Int = 0
+        while tmp > 0 {
+            res += 1
+            tmp /= 10
+        }
+        return res
+    }
+
+}
+
+
 //var arr: [Int] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
 //var arr: [Int] = []
 
@@ -239,3 +291,11 @@ extension Array where Self.Element : Comparable {
 //print(arr)
 //arr.heapSort(by: >)
 //print(arr)
+
+var arr2: [UInt] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
+//var arr2: [UInt] = []
+
+print(arr2.radixSorted())
+print(arr2)
+arr2.radixSort()
+print(arr2)
