@@ -6,18 +6,20 @@
 //
 
 //  Class for clothes
-//  - key: to tell instances from the Structure
+//  - preference
+//      - To tell instances from the Structure
+//      - Standard to select one in the Sequences
 
 import Foundation
 
 class Stuff {
-    static var sId: Int = 0             // Whenever create a instance, add unique ID.
-    private(set) var id: Int = 0
+    static var sPreference: Int = 0             // Whenever create a instance, add unique ID.
+    private(set) var preference: Int = 0
     private(set) var washedNumber: Int = 0
 
     init() {
-        self.id = Stuff.sId
-        Stuff.sId += 1
+        self.preference = Stuff.sPreference
+        Stuff.sPreference += 1
     }
 
     func wash() {
@@ -25,12 +27,12 @@ class Stuff {
     }
 
     func displayState() {
-        print("The washed number of Stuff[\(id)]: \(washedNumber)")
+        print("The washed number of Stuff[\(preference)]: \(washedNumber)")
     }
 }
 
 extension Stuff: Equatable {
     static func == (lhs: Stuff, rhs: Stuff) -> Bool {
-        lhs.id == rhs.id
+        lhs.preference == rhs.preference
     }
 }
