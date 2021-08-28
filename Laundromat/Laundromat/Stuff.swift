@@ -5,7 +5,8 @@
 //  Created by 윤태민 on 8/27/21.
 //
 
-//  Structure for clothes
+//  Class for clothes
+//  - key: to tell instances from the Structure
 
 import Foundation
 
