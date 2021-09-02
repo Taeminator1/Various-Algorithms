@@ -5,6 +5,10 @@
 //  Created by 윤태민 on 6/8/21.
 //
 
+//  Extract string:
+//  - 1. Devide information: Huffman code ...
+//  - 2. Extract original string using huffman code
+
 import Foundation
 
 struct Extractor {

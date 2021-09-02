@@ -5,6 +5,11 @@
 //  Created by 윤태민 on 6/8/21.
 //
 
+//  Compress string:
+//  - 1. Get huffman code using HuffmanNode.
+//  - 2. Convert string to compressed string.
+//  - 3. Add some information to extract in the future.
+
 import Foundation
 import DataStructure
 

@@ -12,10 +12,10 @@
 		34388F8B2678D04D00B36C07 /* HuffmanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34388F8A2678D04D00B36C07 /* HuffmanNode.swift */; };
 		346B52222678A80B00EF5A7D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346B52212678A80B00EF5A7D /* main.swift */; };
 		346B523B2678A8B300EF5A7D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346B523A2678A8B300EF5A7D /* Extension.swift */; };
-		348955412678CD2300FF73EB /* DataStructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3489553D2678CD1E00FF73EB /* DataStructure.framework */; };
-		348955422678CD2300FF73EB /* DataStructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3489553D2678CD1E00FF73EB /* DataStructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		348955432678CD2400FF73EB /* FileRW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3489553E2678CD1F00FF73EB /* FileRW.framework */; };
 		348955442678CD2400FF73EB /* FileRW.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3489553E2678CD1F00FF73EB /* FileRW.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		34D16B6D26E0FFAE00B21F96 /* DataStructure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34D16B6B26E0FF6000B21F96 /* DataStructure.framework */; };
+		34D16B6E26E0FFAE00B21F96 /* DataStructure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 34D16B6B26E0FF6000B21F96 /* DataStructure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,7 +34,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				348955422678CD2300FF73EB /* DataStructure.framework in Embed Frameworks */,
+				34D16B6E26E0FFAE00B21F96 /* DataStructure.framework in Embed Frameworks */,
 				348955442678CD2400FF73EB /* FileRW.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -49,8 +49,8 @@
 		346B521E2678A80B00EF5A7D /* HuffmanCoding */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HuffmanCoding; sourceTree = BUILT_PRODUCTS_DIR; };
 		346B52212678A80B00EF5A7D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		346B523A2678A8B300EF5A7D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		3489553D2678CD1E00FF73EB /* DataStructure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DataStructure.framework; sourceTree = "<group>"; };
 		3489553E2678CD1F00FF73EB /* FileRW.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FileRW.framework; sourceTree = "<group>"; };
+		34D16B6B26E0FF6000B21F96 /* DataStructure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DataStructure.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				348955412678CD2300FF73EB /* DataStructure.framework in Frameworks */,
+				34D16B6D26E0FFAE00B21F96 /* DataStructure.framework in Frameworks */,
 				348955432678CD2400FF73EB /* FileRW.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,8 +106,8 @@
 		346B52292678A86E00EF5A7D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3489553D2678CD1E00FF73EB /* DataStructure.framework */,
 				3489553E2678CD1F00FF73EB /* FileRW.framework */,
+				34D16B6B26E0FF6000B21F96 /* DataStructure.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";

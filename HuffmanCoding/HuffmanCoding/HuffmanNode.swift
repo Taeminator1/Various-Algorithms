@@ -5,6 +5,8 @@
 //  Created by 윤태민 on 6/6/21.
 //
 
+//  Class for getting a huffman code.
+
 import Foundation
 
 class HuffmanNode: Comparable {

@@ -5,13 +5,16 @@
 //  Created by 윤태민 on 6/15/21.
 //
 
+//  Before compress, need to set path of the file:
+//  - If the file is located in Desktop, just write the account name to the path below.
+
 import Foundation
 import FileRW
 import DataStructure
 
 // 압축할 시에 이진 문자열의 자릿수 결정
 let pNumer: Int = 7
-let path: String = "AccountName/Desktop"
+let path: String = "/AccountName/Desktop"
 let originalStr: String = readTextFile(fileName: "origin", at: path)!
 let compressor = Compressor(originalStr, pNumber: pNumer)
 writeTextFile(fileName: "Conversion", contents: compressor.convertedStrInForm, at: path, overwrite: true)
