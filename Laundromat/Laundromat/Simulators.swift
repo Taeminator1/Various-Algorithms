@@ -15,7 +15,7 @@ import Foundation
 //  - repeatNumber: number of washing. (total days: term * repeatNumber)
 //  - possibility: whether wearing or not today
 //  - isRandom: way to select stuff
-func normalLaundrySimulator(stuffNumber: Int, term: Int, repeatNumber: Int, possibility: Double = 1.0, isRandom: Bool = true) -> [Stuff] {
+func normalLaundrySimulator(stuffNumber: Int, term: Int, repeatNumber: Int, possibility: Double = 1.0, isRandom: Bool = true, isWithPreference: Bool = true) -> [Stuff] {
     guard stuffNumber >= term else {
         fatalError("Term has to be more than the number of stuff")
     }
@@ -34,26 +34,17 @@ func normalLaundrySimulator(stuffNumber: Int, term: Int, repeatNumber: Int, poss
                 // isRandom에 따라 어떤 속옷을 입을지 선택: 무작위 또는 바구니2의 가장 바깥쪽
                 if isRandom {
                     let selectedIndex: Int = Int.random(in: 0 ..< washedBasket.count)
-                    // 바구니2에 있는 속옷과 전체 속옷 대조하여 일치할 때, 바구니2에서 사용할 속옷을 꺼내고, 사용 후 바구니1에 넣기
-                    for i in 0 ..< underwears.count {
-                        if underwears[i] == washedBasket[selectedIndex] {
-                            laundryBasket.append(washedBasket.remove(at: selectedIndex))
-                            day += 1
-                            break
-                        }
-                    }
+                    // 바구니2에서 사용할 속옷을 꺼내고, 사용 후 바구니1에 넣기
+                    laundryBasket.append(washedBasket.remove(at: selectedIndex))
                 }
                 else {
                     laundryBasket.append((washedBasket.removeLast()))   // 바구니2에서 사용할 속옷 꺼내고, 사용 후 바구니1에 넣기
-                    day += 1
                 }
             }
-            else {
-                day += 1
-            }
+            day += 1
         }
         
-        laundryBasket.doTheWash(to: &washedBasket, isSorted: true)      // 세탁 후, 바구니2에 넣기
+        laundryBasket.doTheWash(to: &washedBasket, isSorted: isWithPreference)      // 세탁 후, 바구니2에 넣기
         washedNumber += 1
     }
 
@@ -87,23 +78,14 @@ func advancedLaundrySimulator1(stuffNumber: Int, term: Int, repeatNumber: Int, p
                 // isRandom에 따라 어떤 속옷을 입을지 선택: 무작위 또는 바구니2의 가장 바깥쪽
                 if isRandom {
                     let selectedIndex: Int = Int.random(in: 0 ..< washedBasket.count)
-                    // 바구니2에 있는 속옷과 전체 속옷 대조하여 일치할 때, 바구니2에서 사용할 속옷을 꺼내고, 사용 후 바구니1에 넣기
-                    for i in 0 ..< underwears.count {
-                        if underwears[i] == washedBasket[selectedIndex] {
-                            laundryBasket.append(washedBasket.remove(at: selectedIndex))
-                            day += 1
-                            break
-                        }
-                    }
+                    // 바구니2에서 사용할 속옷을 꺼내고, 사용 후 바구니1에 넣기
+                    laundryBasket.append(washedBasket.remove(at: selectedIndex))
                 }
                 else {
                     laundryBasket.append((washedBasket.removeLast()))   // 바구니2에서 사용할 속옷 꺼내고, 사용 후 바구니1에 넣기
-                    day += 1
                 }
             }
-            else {
-                day += 1
-            }
+            day += 1
         }
         
         laundryBasket.doTheWash(to: &tmpBasket)                         // 세탁 후, 임시 바구니에 넣기
@@ -138,19 +120,13 @@ func advancedLaundrySimulator2(stuffNumber: Int, term: Int, repeatNumber: Int, p
                 // isRandom에 따라 어떤 속옷을 입을지 선택: 무작위 또는 바구니2의 가장 바깥쪽
                 if isRandom {
                     let selectedIndex: Int = Int.random(in: 0 ..< washedBasket.count)
-                    // 바구니2에 있는 속옷과 전체 속옷 대조하여 일치할 때, 바구니2에서 사용할 속옷을 꺼내고, 사용 후 임시 바구니1에 넣기
-                    for i in 0 ..< underwears.count {
-                        if underwears[i] == washedBasket[selectedIndex] {
-                            tmpLaundryBasket.append(washedBasket.remove(at: selectedIndex))
-                            if washedBasket.isEmpty {                   // 바구니2가 비어있을 경우, 임시 바구니2에서 가져오기
-                                tmpWashedBasket.move(to: &washedBasket, isSorted: true)
-                            }
-                            if tmpLaundryBasket.count == term {         // 임시 바구니1에 속옷의 개수가 term이 되면 바구니1로 옮기기
-                                tmpLaundryBasket.move(to: &laundryBasket)
-                            }
-                            day += 1
-                            break
-                        }
+                    // 바구니2에서 사용할 속옷을 꺼내고, 사용 후 임시 바구니1에 넣기
+                    tmpLaundryBasket.append(washedBasket.remove(at: selectedIndex))
+                    if washedBasket.isEmpty {                   // 바구니2가 비어있을 경우, 임시 바구니2에서 가져오기
+                        tmpWashedBasket.move(to: &washedBasket, isSorted: true)
+                    }
+                    if tmpLaundryBasket.count == term {         // 임시 바구니1에 속옷의 개수가 term이 되면 바구니1로 옮기기
+                        tmpLaundryBasket.move(to: &laundryBasket)
                     }
                 }
                 else {
@@ -161,12 +137,9 @@ func advancedLaundrySimulator2(stuffNumber: Int, term: Int, repeatNumber: Int, p
                     if tmpLaundryBasket.count == term {                 // 임시 바구니1에 속옷의 개수가 term이 되면 바구니1로 옮기기
                         tmpLaundryBasket.move(to: &laundryBasket)
                     }
-                    day += 1
                 }
             }
-            else {
-                day += 1
-            }
+            day += 1
         }
         
         laundryBasket.doTheWash(to: &tmpWashedBasket)                   // 세탁 후, 임시 바구니2에 넣기

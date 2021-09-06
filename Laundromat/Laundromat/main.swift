@@ -14,11 +14,11 @@ import Foundation
 
 //  선호도 반영 x:
 //  - 옷을 균등하게 사용 가능
-//print("Total washed number: \(normalLaundrySimulator(stuffNumber: 10, term: 7, repeatNumber: 100, possibility: 0.8, isRandom: true).reduce(0) { $0 + $1.washedNumber })")
+//print("Total washed number: \(normalLaundrySimulator(stuffNumber: 10, term: 7, repeatNumber: 100, possibility: 1, isRandom: true).reduce(0) { $0 + $1.washedNumber })")
 
 //  선호도 반영 o:
 //  - 선호도가 높은 옷을 많이 사용하는 경향이 생김
-//print("Total washed number: \(normalLaundrySimulator(stuffNumber: 10, term: 7, repeatNumber: 100, possibility: 0.8, isRandom: false).reduce(0) { $0 + $1.washedNumber })")
+//print("Total washed number: \(normalLaundrySimulator(stuffNumber: 10, term: 7, repeatNumber: 100, possibility: 0.8, isRandom: false, isWithPreference: true).reduce(0) { $0 + $1.washedNumber })")
 
 //  MARK:- advancedLaundrySimulator1
 //  - 임시 바구니 사용
@@ -42,5 +42,5 @@ import Foundation
 //  - 옷의 가짓수가 주기의 2배
 
 //  - 선호도에 따라 선택할지 무작위로 선택할지에 상관 없이 모든 옷을 균등하게 사용 가능
-print("Total washed number: \(advancedLaundrySimulator2(stuffNumber: 14, term: 7, repeatNumber: 100, possibility: 0.8, isRandom: true).reduce(0) { $0 + $1.washedNumber })")
-print("Total washed number: \(advancedLaundrySimulator2(stuffNumber: 14, term: 7, repeatNumber: 100, possibility: 0.8, isRandom: false).reduce(0) { $0 + $1.washedNumber })")
+//print("Total washed number: \(advancedLaundrySimulator2(stuffNumber: 14, term: 7, repeatNumber: 100, possibility: 0.8, isRandom: true).reduce(0) { $0 + $1.washedNumber })")
+//print("Total washed number: \(advancedLaundrySimulator2(stuffNumber: 14, term: 7, repeatNumber: 100, possibility: 0.8, isRandom: false).reduce(0) { $0 + $1.washedNumber })")

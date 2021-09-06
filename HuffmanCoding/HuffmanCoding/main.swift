@@ -10,7 +10,6 @@
 
 import Foundation
 import FileRW
-import DataStructure
 
 // 압축할 시에 이진 문자열의 자릿수 결정
 let pNumer: Int = 7
