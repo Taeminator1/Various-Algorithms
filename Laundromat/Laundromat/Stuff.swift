@@ -13,7 +13,7 @@
 import Foundation
 
 class Stuff {
-    static var sPreference: Int = 1             // Whenever create a instance, add unique ID.
+    static var sPreference: Int = 0             // Whenever create a instance, add unique ID.
     private(set) var preference: Int = 0
     private(set) var washedNumber: Int = 0
 

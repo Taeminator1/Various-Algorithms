@@ -18,7 +18,7 @@ import Foundation
 
 //  선호도 반영 o:
 //  - 선호도가 높은 옷을 많이 사용하는 경향이 생김
-//print("Total washed number: \(normalLaundrySimulator(stuffNumber: 10, term: 7, repeatNumber: 100, possibility: 0.8, isRandom: false, isWithPreference: true).reduce(0) { $0 + $1.washedNumber })")
+//print("Total washed number: \(normalLaundrySimulator(stuffNumber: 10, term: 7, repeatNumber: 100, possibility: 0.8, isRandom: false).reduce(0) { $0 + $1.washedNumber })")
 
 //  MARK:- advancedLaundrySimulator1
 //  - 임시 바구니 사용

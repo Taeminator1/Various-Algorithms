@@ -27,9 +27,8 @@ extension Array where Element == Stuff {
     }
     
     // 현재 바구니에 있는 옷을 세탁한 뒤, 다른 바구니로 옮기기
-    mutating func doTheWash(to basket: inout Basket, isSorted: Bool = false) {
+    mutating func doTheWash(isSorted: Bool = false) {
         self.forEach { $0.wash() }              // 옷 세탁
-        basket.shuffle()                        // 세탁이 완료된 후 순서 변경 됨
-        move(to: &basket, isSorted: isSorted)   // 다른 바구니로 옮기기
+        self.shuffle()                          // 세탁 시에 옷이 섞임
     }
 }

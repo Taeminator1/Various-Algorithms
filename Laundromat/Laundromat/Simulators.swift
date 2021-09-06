@@ -15,7 +15,7 @@ import Foundation
 //  - repeatNumber: number of washing. (total days: term * repeatNumber)
 //  - possibility: whether wearing or not today
 //  - isRandom: way to select stuff
-func normalLaundrySimulator(stuffNumber: Int, term: Int, repeatNumber: Int, possibility: Double = 1.0, isRandom: Bool = true, isWithPreference: Bool = true) -> [Stuff] {
+func normalLaundrySimulator(stuffNumber: Int, term: Int, repeatNumber: Int, possibility: Double = 1.0, isRandom: Bool = true) -> [Stuff] {
     guard stuffNumber >= term else {
         fatalError("Term has to be more than the number of stuff")
     }
@@ -44,7 +44,8 @@ func normalLaundrySimulator(stuffNumber: Int, term: Int, repeatNumber: Int, poss
             day += 1
         }
         
-        laundryBasket.doTheWash(to: &washedBasket, isSorted: isWithPreference)      // 세탁 후, 바구니2에 넣기
+        laundryBasket.doTheWash(isSorted: true)     // 세탁하기
+        laundryBasket.move(to: &washedBasket)       // 바구니2에 넣기
         washedNumber += 1
     }
 
@@ -88,7 +89,8 @@ func advancedLaundrySimulator1(stuffNumber: Int, term: Int, repeatNumber: Int, p
             day += 1
         }
         
-        laundryBasket.doTheWash(to: &tmpBasket)                         // 세탁 후, 임시 바구니에 넣기
+        laundryBasket.doTheWash()                   // 세탁하기
+        laundryBasket.move(to: &tmpBasket)          // 임시 바구니에 넣기
         washedNumber += 1
     }
 
@@ -142,10 +144,13 @@ func advancedLaundrySimulator2(stuffNumber: Int, term: Int, repeatNumber: Int, p
             day += 1
         }
         
-        laundryBasket.doTheWash(to: &tmpWashedBasket)                   // 세탁 후, 임시 바구니2에 넣기
+        laundryBasket.doTheWash()                   // 세탁하기
+        laundryBasket.move(to: &tmpWashedBasket)    // 임시 바구니2에 넣기
         washedNumber += 1
     }
 
     underwears.forEach { $0.displayState() }
     return underwears
 }
+
+
