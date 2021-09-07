@@ -10,8 +10,27 @@ import Foundation
 typealias Basket = Array<Stuff>
 
 extension Array where Element == Stuff {
+    
+    // 선호도가 가장 높은 Stuff의 인덱스 반환
+    var maxPreferredIndex: Int? {
+        if self.isEmpty { return nil }
+        
+        var tmpMaxPreferredIndex: Int = 0
+        var tmpMaxPreference: Int = self[0].preference
+        
+        for i in 1 ..< self.count {
+            let tmpPreference: Int = self[i].preference
+            if tmpPreference > tmpMaxPreference {
+                tmpMaxPreferredIndex = i
+                tmpMaxPreference = tmpPreference
+            }
+        }
+        
+        return tmpMaxPreferredIndex
+    }
+    
     // 초기에 관리할 항목 추가
-    mutating func addAtFirst(_ number: Int, to basket: inout Basket) {
+    mutating func create(_ number: Int, to basket: inout Basket) {
         Stuff.sPreference = 0               // 선호도 초기화
         for _ in 0 ..< number { self.append(Stuff()) }  // 관리할 옷 생성
         basket.append(contentsOf: self)     // 다른 바구니로 옮기기
