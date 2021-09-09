@@ -37,4 +37,10 @@ import Foundation
 //print("Total washed number: \(advancedLaundrySimulator2(washTerm: 7, repeatNumber: 100, possibility: 0.8, priority: .byPreference).reduce(0) { $0 + $1.washedNumber })")
 
 
-
+var simulator = WashingSimulator(stuffNumber: 10, washTerm: 7, repeatNumber: 100, possibility: 0.8)
+// 서랍의 가장 바깥쪽의 속옷을 꺼낼 경우
+print("Total washed number: \(simulator.run(.lastInFirstOut).reduce(0) { $0 + $1.washedNumber })")
+// 무작위로 속옷을 꺼낼 경우
+print("Total washed number: \(simulator.run(.randomly).reduce(0) { $0 + $1.washedNumber })")
+// 가장 선호하는 속옷을 꺼낼 경우
+print("Total washed number: \(simulator.run(.byPreference).reduce(0) { $0 + $1.washedNumber })")

@@ -30,24 +30,26 @@ extension Array where Element == Stuff {
     }
     
     // 초기에 관리할 항목 추가
-    mutating func create(_ number: Int, to basket: inout Basket) {
-        Stuff.sPreference = 0               // 선호도 초기화
+    mutating func create(_ number: UInt, to basket: inout Basket) {
+        Stuff.sPreference = 0                           // 선호도 초기화
         for _ in 0 ..< number { self.append(Stuff()) }  // 관리할 옷 생성
-        basket.append(contentsOf: self)     // 다른 바구니로 옮기기
+        basket.append(contentsOf: self)                 // 다른 바구니로 옮기기
     }
     
     // 현재 바구니에 있는 옷을 다른 바구니로 옮기기
     mutating func move(to basket: inout Basket, isSorted: Bool = false) {
         basket.append(contentsOf: self)     // 다른 바구니로 옮기기
         self.removeAll()                    // 현재 바구니 비우기
-        if isSorted {
-            basket.sort { $0.preference < $1.preference }       // 선호도에 따라 바구니2 정렬
+        if isSorted {                       // 선호도에 따라 바구니2 정렬
+            basket.sort { $0.preference < $1.preference }
         }
     }
     
     // 현재 바구니에 있는 옷을 세탁한 뒤, 다른 바구니로 옮기기
-    mutating func doTheWash(isSorted: Bool = false) {
+    mutating func doTheWash() {
         self.forEach { $0.wash() }              // 옷 세탁
         self.shuffle()                          // 세탁 시에 옷이 섞임
     }
 }
+
+

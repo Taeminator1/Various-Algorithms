@@ -21,9 +21,8 @@ enum SelectionPriority {
 //  - washTerm: Term for washing.
 //  - repeatNumber: Number of washing. (total days: washTerm * repeatNumber)
 //  - possibility: Whether wearing or not today
-//  - isRandom: Way to select stuff
 //  - priority: Selection priority
-func normalLaundrySimulator(stuffNumber: Int, washTerm: Int, repeatNumber: Int, possibility: Double = 1.0, priority: SelectionPriority) -> [Stuff] {
+func normalLaundrySimulator(stuffNumber: UInt, washTerm: UInt, repeatNumber: UInt, possibility: Double = 1.0, priority: SelectionPriority) -> [Stuff] {
     guard stuffNumber >= washTerm else {
         fatalError("Wash term has to be more than the number of stuff")
     }
@@ -36,7 +35,7 @@ func normalLaundrySimulator(stuffNumber: Int, washTerm: Int, repeatNumber: Int, 
     var washedNumber: Int = 0
     while washedNumber < repeatNumber {                     // repeatNumber 만큼 세탁 가능
         var day: Int = 0
-        while day < washTerm {                                  // 세탁을 위한 주기 카운트
+        while day < washTerm {                              // 세탁을 위한 주기 카운트
             let isPossible: Bool = { Double.random(in: 0.0 ..< 1.0) < possibility }()
             if isPossible {                                 // 속옷 입는 날
                 var selectedIndex: Int
@@ -66,7 +65,7 @@ func normalLaundrySimulator(stuffNumber: Int, washTerm: Int, repeatNumber: Int, 
 
 //  Add temporary basket for property in the fucntion
 //  - tmpWashedBasket: Stuff will be kept there at first after washing. If washedBasket is empty, all stuff in the tmpBasket will be moved to the washedBasket.
-func advancedLaundrySimulator1(stuffNumber: Int, washTerm: Int, repeatNumber: Int, possibility: Double = 1.0, priority: SelectionPriority) -> [Stuff] {
+func advancedLaundrySimulator1(stuffNumber: UInt, washTerm: UInt, repeatNumber: UInt, possibility: Double = 1.0, priority: SelectionPriority) -> [Stuff] {
     guard stuffNumber >= washTerm else {
         fatalError("Wash term has to be more than the number of stuff")
     }
@@ -115,7 +114,7 @@ func advancedLaundrySimulator1(stuffNumber: Int, washTerm: Int, repeatNumber: In
 //  Add temporary baskets for properties in the fucntion
 //  - tmpLaundryBasket: Stuff will be kept there at first after using. If the number of stuff in the tmpLaundryBasket is wash term, all stuff will be moved to the laundryBasket.
 //  - tmpWashedBasket: Stuff will be kept there at first after washing. If washedBasket is empty, all stuff in the tmpWashedBasket will be moved to the washedBasket.
-func advancedLaundrySimulator2(washTerm: Int, repeatNumber: Int, possibility: Double = 1.0, priority: SelectionPriority) -> [Stuff] {
+func advancedLaundrySimulator2(washTerm: UInt, repeatNumber: UInt, possibility: Double = 1.0, priority: SelectionPriority) -> [Stuff] {
     guard washTerm > 0 else {
         fatalError("Wash term has to be more than zero.")
     }

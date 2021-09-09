@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		343901F226EA357C00847DC7 /* WashingSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343901F126EA357C00847DC7 /* WashingSimulator.swift */; };
 		3443889526D904DF00D88B19 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3443889426D904DF00D88B19 /* main.swift */; };
 		3443889D26D9050C00D88B19 /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3443889C26D9050C00D88B19 /* Stuff.swift */; };
 		3455093126DA1FF3007684E2 /* Simulators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3455093026DA1FF3007684E2 /* Simulators.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		343901F126EA357C00847DC7 /* WashingSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashingSimulator.swift; sourceTree = "<group>"; };
 		3443889126D904DF00D88B19 /* Laundromat */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Laundromat; sourceTree = BUILT_PRODUCTS_DIR; };
 		3443889426D904DF00D88B19 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3443889C26D9050C00D88B19 /* Stuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stuff.swift; sourceTree = "<group>"; };
@@ -64,9 +66,10 @@
 			isa = PBXGroup;
 			children = (
 				3443889426D904DF00D88B19 /* main.swift */,
-				3443889C26D9050C00D88B19 /* Stuff.swift */,
-				3455093026DA1FF3007684E2 /* Simulators.swift */,
 				347895CB26DE2E2800926F33 /* Basket.swift */,
+				3443889C26D9050C00D88B19 /* Stuff.swift */,
+				343901F126EA357C00847DC7 /* WashingSimulator.swift */,
+				3455093026DA1FF3007684E2 /* Simulators.swift */,
 			);
 			path = Laundromat;
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 				347895CC26DE2E2800926F33 /* Basket.swift in Sources */,
 				3443889526D904DF00D88B19 /* main.swift in Sources */,
 				3455093126DA1FF3007684E2 /* Simulators.swift in Sources */,
+				343901F226EA357C00847DC7 /* WashingSimulator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
