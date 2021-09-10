@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		341576D826EB744D00F4FD97 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341576D726EB744D00F4FD97 /* File.swift */; };
 		343901F226EA357C00847DC7 /* WashingSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343901F126EA357C00847DC7 /* WashingSimulator.swift */; };
 		3443889526D904DF00D88B19 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3443889426D904DF00D88B19 /* main.swift */; };
 		3443889D26D9050C00D88B19 /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3443889C26D9050C00D88B19 /* Stuff.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		341576D726EB744D00F4FD97 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		343901F126EA357C00847DC7 /* WashingSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashingSimulator.swift; sourceTree = "<group>"; };
 		3443889126D904DF00D88B19 /* Laundromat */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Laundromat; sourceTree = BUILT_PRODUCTS_DIR; };
 		3443889426D904DF00D88B19 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				347895CB26DE2E2800926F33 /* Basket.swift */,
 				3443889C26D9050C00D88B19 /* Stuff.swift */,
 				343901F126EA357C00847DC7 /* WashingSimulator.swift */,
+				341576D726EB744D00F4FD97 /* File.swift */,
 				3455093026DA1FF3007684E2 /* Simulators.swift */,
 			);
 			path = Laundromat;
@@ -132,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3443889D26D9050C00D88B19 /* Stuff.swift in Sources */,
+				341576D826EB744D00F4FD97 /* File.swift in Sources */,
 				347895CC26DE2E2800926F33 /* Basket.swift in Sources */,
 				3443889526D904DF00D88B19 /* main.swift in Sources */,
 				3455093126DA1FF3007684E2 /* Simulators.swift in Sources */,

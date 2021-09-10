@@ -27,10 +27,10 @@ func normalLaundrySimulator(stuffNumber: UInt, washTerm: UInt, repeatNumber: UIn
         fatalError("Wash term has to be more than the number of stuff")
     }
 
-    var laundryBasket: Basket = []                          // 세탁할 옷을 넣는 바구니1
-    var washedBasket: Basket = []                           // 세탁된 옷을 넣는 바구니2
+    var washedBasket: Basket = []                           // 세탁된 옷을 넣는 바구니1
+    var laundryBasket: Basket = []                          // 세탁할 옷을 넣는 바구니2
     var underwears: Array<Stuff> = []                       // 관리할 옷 추가
-    underwears.create(stuffNumber, to: &washedBasket)       // 관리할 옷 바구니2에 넣기
+    underwears.create(stuffNumber, to: &washedBasket)       // 관리할 옷 바구니1에 넣기
 
     var washedNumber: Int = 0
     while washedNumber < repeatNumber {                     // repeatNumber 만큼 세탁 가능
@@ -49,13 +49,13 @@ func normalLaundrySimulator(stuffNumber: UInt, washTerm: UInt, repeatNumber: UIn
                     selectedIndex = washedBasket.maxPreferredIndex!
                 }
                 
-                laundryBasket.append(washedBasket.remove(at: selectedIndex))    // 선택된 속옷을 사용 후에 바구니1에 넣기
+                laundryBasket.append(washedBasket.remove(at: selectedIndex))    // 선택된 속옷을 사용 후에 바구니2에 넣기
             }
             day += 1
         }
         
         laundryBasket.doTheWash()                           // 세탁하기
-        laundryBasket.move(to: &washedBasket)               // 바구니2에 넣기
+        laundryBasket.move(to: &washedBasket)               // 바구니1에 넣기
         washedNumber += 1
     }
 
@@ -70,11 +70,11 @@ func advancedLaundrySimulator1(stuffNumber: UInt, washTerm: UInt, repeatNumber: 
         fatalError("Wash term has to be more than the number of stuff")
     }
     
-    var laundryBasket: Basket = []                          // 세탁할 옷을 넣는 바구니1
-    var washedBasket: Basket = []                           // 세탁된 옷을 넣는 바구니2
+    var washedBasket: Basket = []                           // 세탁된 옷을 넣는 바구니1
+    var laundryBasket: Basket = []                          // 세탁할 옷을 넣는 바구니2
     var underwears: Array<Stuff> = []                       // 관리할 옷 추가
-    underwears.create(stuffNumber, to: &washedBasket)       // 관리할 옷 바구니2에 넣기
-    var tmpBasket: Basket = []                              // 세탁된 옷을 보관하는 임시 바구니1
+    underwears.create(stuffNumber, to: &washedBasket)       // 관리할 옷 바구니1에 넣기
+    var tmpWashedBasket: Basket = []                        // 세탁된 옷을 보관하는 임시 바구니
 
     var washedNumber: Int = 0
     while washedNumber < repeatNumber {                     // repeatNumber 만큼 세탁 가능
@@ -93,17 +93,17 @@ func advancedLaundrySimulator1(stuffNumber: UInt, washTerm: UInt, repeatNumber: 
                     selectedIndex = washedBasket.maxPreferredIndex!
                 }
                 
-                laundryBasket.append(washedBasket.remove(at: selectedIndex))    // 선택된 속옷을 사용 후에 바구니1에 넣기
+                laundryBasket.append(washedBasket.remove(at: selectedIndex))    // 선택된 속옷을 사용 후에 바구니2에 넣기
                 
-                if washedBasket.isEmpty {                   // 바구니2가 비어있을 경우, 임시 바구니에서 가져오기
-                    tmpBasket.move(to: &washedBasket, isSorted: true)
+                if washedBasket.isEmpty {                   // 바구니1이 비어있을 경우, 임시 바구니에서 가져오기
+                    tmpWashedBasket.move(to: &washedBasket)
                 }
             }
             day += 1
         }
         
         laundryBasket.doTheWash()                           // 세탁하기
-        laundryBasket.move(to: &tmpBasket)                  // 임시 바구니에 넣기
+        laundryBasket.move(to: &tmpWashedBasket)            // 임시 바구니에 넣기
         washedNumber += 1
     }
 
@@ -119,12 +119,13 @@ func advancedLaundrySimulator2(washTerm: UInt, repeatNumber: UInt, possibility: 
         fatalError("Wash term has to be more than zero.")
     }
     
-    var laundryBasket: Basket = []                          // 세탁할 옷을 넣는 바구니1
-    var washedBasket: Basket = []                           // 세탁된 옷을 넣는 바구니2
+    var washedBasket: Basket = []                           // 세탁된 옷을 넣는 바구니1
+    var laundryBasket: Basket = []                          // 세탁할 옷을 넣는 바구니2
     var underwears: Array<Stuff> = []                       // 관리할 옷 추가
-    underwears.create(washTerm * 2, to: &washedBasket)      // 세탁 주기의 두 배만큼 관리할 옷 바구니2에 넣기
-    var tmpLaundryBasket: Basket = []                       // 세탁할 옷을 보관하는 임시 바구니1
-    var tmpWashedBasket: Basket = []                        // 세탁된 옷을 보관하는 임시 바구니2
+    underwears.create(washTerm * 2, to: &washedBasket)      // 세탁 주기의 두 배만큼 관리할 옷 바구니1에 넣기
+    var tmpWashedBasket: Basket = []                        // 세탁된 옷을 보관하는 임시 바구니1
+    var tmpLaundryBasket: Basket = []                       // 세탁할 옷을 보관하는 임시 바구니2
+    
 
     var washedNumber: Int = 0
     while washedNumber < repeatNumber {                     // repeatNumber 만큼 세탁 가능
@@ -143,12 +144,12 @@ func advancedLaundrySimulator2(washTerm: UInt, repeatNumber: UInt, possibility: 
                     selectedIndex = washedBasket.maxPreferredIndex!
                 }
                 
-                tmpLaundryBasket.append(washedBasket.remove(at: selectedIndex))     // 선택된 속옷을 사용 후에 임시 바구니1에 넣기
+                tmpLaundryBasket.append(washedBasket.remove(at: selectedIndex))     // 선택된 속옷을 사용 후에 임시 바구니2에 넣기
                 
-                if washedBasket.isEmpty {                   // 바구니2가 비어있을 경우, 임시 바구니2에서 가져오기
+                if washedBasket.isEmpty {                   // 바구니1이 비어있을 경우, 임시 바구니1에서 가져오기
                     tmpWashedBasket.move(to: &washedBasket)
                 }
-                if tmpLaundryBasket.count == washTerm {     // 임시 바구니1에 속옷의 개수가 washTerm이 되면 바구니1로 옮기기
+                if tmpLaundryBasket.count == washTerm {     // 임시 바구니2에 속옷의 개수가 washTerm이 되면 바구니2로 옮기기
                     tmpLaundryBasket.move(to: &laundryBasket)
                 }
             }
@@ -156,7 +157,7 @@ func advancedLaundrySimulator2(washTerm: UInt, repeatNumber: UInt, possibility: 
         }
         
         laundryBasket.doTheWash()                           // 세탁하기
-        laundryBasket.move(to: &tmpWashedBasket)            // 임시 바구니2에 넣기
+        laundryBasket.move(to: &tmpWashedBasket)            // 임시 바구니1에 넣기
         washedNumber += 1
     }
 
