@@ -70,47 +70,24 @@ struct WashingSimulator {
                         selectedIndex = washedBasket.maxPreferredIndex!
                     }
                     
-                    // 선택된 속옷을 사용 후에 특정 바구니에 넣기
-                    if isTmpWashedBasket == false && isTmpLaundryBasket == false {
-                        laundryBasket.append(washedBasket.remove(at: selectedIndex))
+                    // 선택된 속옷을 사용 후에 바구니2 또는 임시 바구니2에 넣기
+                    selectBasket(isTmpLaundryBasket, &laundryBasket, &tmpLaundryBasket) {
+                        $0.append(washedBasket.remove(at: selectedIndex))
                     }
-                    else if isTmpWashedBasket == true && isTmpLaundryBasket == false {
-                        laundryBasket.append(washedBasket.remove(at: selectedIndex))
-                        if washedBasket.isEmpty {
-                            tmpWashedBasket.move(to: &washedBasket)
-                        }
+                    if washedBasket.isEmpty {                   // isTmpWashedBasket이 false인 경우, 항상 빈 배열 전달.
+                        tmpWashedBasket.move(to: &washedBasket)
                     }
-                    else if isTmpWashedBasket == false && isTmpLaundryBasket == true {
-                        tmpLaundryBasket.append(washedBasket.remove(at: selectedIndex))
-                        if tmpLaundryBasket.count == washTerm {
-                            tmpLaundryBasket.move(to: &laundryBasket)
-                        }
-                    }
-                    else {
-                        tmpLaundryBasket.append(washedBasket.remove(at: selectedIndex))
-                        if washedBasket.isEmpty {
-                            tmpWashedBasket.move(to: &washedBasket)
-                        }
-                        if tmpLaundryBasket.count == washTerm {
-                            tmpLaundryBasket.move(to: &laundryBasket)
-                        }
+                    if tmpLaundryBasket.count == washTerm {     // isTmpLaundryBasket이 false인 경우 무시 됨.
+                        tmpLaundryBasket.move(to: &laundryBasket)
                     }
                 }
+                
                 day += 1
             }
-            laundryBasket.doTheWash()                           // 세탁하기
-            // 세탁한 후에 특정 바구니에 넣기
-            if isTmpWashedBasket == false && isTmpLaundryBasket == false {
-                laundryBasket.move(to: &washedBasket)
-            }
-            else if isTmpWashedBasket == true && isTmpLaundryBasket == false {
-                laundryBasket.move(to: &tmpWashedBasket)
-            }
-            else if isTmpWashedBasket == false && isTmpLaundryBasket == true {
-                laundryBasket.move(to: &washedBasket)
-            }
-            else {
-                laundryBasket.move(to: &tmpWashedBasket)
+            
+            laundryBasket.doTheWash()                                           // 세탁하기
+            selectBasket(isTmpWashedBasket, &washedBasket, &tmpWashedBasket) {  // 세탁한 후에 바구니1 또는 임시 바구니1에 넣기
+                laundryBasket.move(to: &($0))
             }
             
             washedNumber += 1
@@ -121,10 +98,13 @@ struct WashingSimulator {
     }
     
     private mutating func initializeBasket() {
-        washedBasket = []                           // 세탁된 옷을 넣는 바구니1
-        laundryBasket = []                          // 세탁할 옷을 넣는 바구니2
-        tmpWashedBasket = []                        // 세탁된 옷을 보관하는 임시 바구니1
-        tmpLaundryBasket = []                       // 세탁할 옷을 보관하는 임시 바구니2
-        
+        washedBasket = []
+        laundryBasket = []
+        tmpWashedBasket = []
+        tmpLaundryBasket = []
+    }
+    
+    private func selectBasket(_ isTmpBasket: Bool, _ basket: inout Basket, _ tmpBasket: inout Basket, f: (inout Basket) -> Void) {
+        isTmpBasket ? f(&tmpBasket) : f(&basket)
     }
 }
