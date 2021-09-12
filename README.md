@@ -6,6 +6,7 @@ Swift를 이용해 다양한 알고리즘을 직접 구현해 보고 기능이�
 - [개발 정보](#개발-정보)
 - [Page Rank Tricks](#Page-Rank-Tricks)
 - [Huffman Coding](#Huffman-Coding)
+- [태민의 세탁 횟수 문제](#태민의-세탁-횟수-문제)
 - [참고](#참고)
 
 # 개발 정보
@@ -27,6 +28,13 @@ Swift를 이용해 다양한 알고리즘을 직접 구현해 보고 기능이�
     - [문자열 압축](https://taeminator1.tistory.com/53)
     - [문자열 추출](https://taeminator1.tistory.com/54)
     - [검증](https://taeminator1.tistory.com/56)
+
+# 태민의 세탁 횟수 문제
+한 번 입고 세탁해야 하는 속옷들이 시간이 지날 수록 세탁 횟수에 차이를 일으키는 이유에 대해 확인하고, 이를 해결할 수 있는 방법에 대한 고찰
+- [세탁 횟수 문제](https://taeminator1.tistory.com/67)
+    - [구현1](https://taeminator1.tistory.com/68)
+    - [구현2](https://taeminator1.tistory.com/69)
+    - [구현3](https://taeminator1.tistory.com/70)
 
 # 참고
 - Frameworks
