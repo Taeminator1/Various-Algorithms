@@ -59,10 +59,10 @@ extension Page
     }
     
     func displayReferedCount() {
-        print("Posiibility of \(urlString): \(self.referedCount)")
+        print("Possibility of \(urlString): \(self.referedCount)")
     }
     
-    func randomSurferTrickSimulator(_ pages: [Page], surfPossiblity: Int = 100, repeatNumber: Int) {
+    func randomSurferTrickSimulator(_ pages: [Page], surfPossibility: Int = 100, repeatNumber: Int) {
         let pagesCount: Int = pages.count
         let pageQueue: Queue = Queue<Page>(Node(self))
         self.referedCount += 1
@@ -71,7 +71,7 @@ extension Page
         loop: while repeatCount < repeatNumber && !pageQueue.isEmpty {
             let popedPage: Page = pageQueue.pop()!.getData()
             
-            if Page.isPossible(surfPossiblity)! {                   // Random Surfer
+            if Page.isPossible(surfPossibility)! {                  // Random Surfer
                 var tmpPage: Page = pages[Int.random(in: 0 ..< pagesCount)]
                 var isLinked: Bool = true
                 while isLinked {
@@ -109,11 +109,10 @@ extension Page
 }
 
 extension Page {
-    static func isPossible(_ possiblity: Int) -> Bool? {
-        if possiblity < 0 || possiblity > 100 {
-            print("possiblity is out of range")
-            return nil
+    static func isPossible(_ possibility: Int) -> Bool? {
+        guard possibility >= 0 && possibility <= 100 else {
+            fatalError("possibility is out of range")
         }
-        return Int.random(in: 1 ... 100) <= possiblity
+        return Int.random(in: 1 ... 100) <= possibility
     }
 }
