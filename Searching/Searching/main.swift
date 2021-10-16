@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DataStructure
 
 print("Hello, World!")
 
@@ -18,3 +19,19 @@ print(arr2.recursiveBinarySearch(key: 4) ?? "Fail to search")
 print(arr2.recursiveBinarySearch(key: 5) ?? "Fail to search")
 print(arr2.binarySearchUsingLoop(key: 4) ?? "Fail to search")
 print(arr2.binarySearchUsingLoop(key: 5) ?? "Fail to search")
+
+
+let binaryNode27 = BinaryNode(27)
+let binaryNode31 = BinaryNode(31, left: binaryNode27)
+let binaryNode26 = BinaryNode(26, right: binaryNode31)
+let binaryNode12 = BinaryNode(12)
+let binaryNode3 = BinaryNode(3)
+let binaryNode7 = BinaryNode(7, left: binaryNode3, right: binaryNode12)
+let binaryNode18 = BinaryNode(18, left: binaryNode7, right: binaryNode26)
+
+let binarySearchTree = BinarySearchTree(root: binaryNode18)
+print(binarySearchTree.inorder())
+
+print(binarySearchTree.search(13)?.data)
+print(binarySearchTree.search(26)?.data)
+
