@@ -34,4 +34,8 @@ print(binarySearchTree.inorder())
 
 print(binarySearchTree.search(13)?.data)
 print(binarySearchTree.search(26)?.data)
+print(binarySearchTree.search(17)?.data)
 
+binarySearchTree.insert(BinaryNode(17))
+binarySearchTree.insert(BinaryNode(1))
+print(binarySearchTree.inorder())
