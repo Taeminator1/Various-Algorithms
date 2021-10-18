@@ -32,10 +32,21 @@ let binaryNode18 = BinaryNode(18, left: binaryNode7, right: binaryNode26)
 let binarySearchTree = BinarySearchTree(root: binaryNode18)
 print(binarySearchTree.inorder())
 
-print(binarySearchTree.search(13)?.data)
-print(binarySearchTree.search(26)?.data)
-print(binarySearchTree.search(17)?.data)
+print("search")
+print(binarySearchTree.search(key: 13)?.data)
+print(binarySearchTree.search(key: 26)?.data)
+print(binarySearchTree.search(key: 17)?.data)
 
 binarySearchTree.insert(BinaryNode(17))
 binarySearchTree.insert(BinaryNode(1))
 print(binarySearchTree.inorder())
+
+
+
+print(binarySearchTree.remove(key: 1))
+print(binarySearchTree.remove(key: -1))
+print(binarySearchTree.inorder())
+
+print(binarySearchTree.remove(key: 31))
+print(binarySearchTree.inorder())
+
