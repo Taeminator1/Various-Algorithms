@@ -21,15 +21,15 @@ print(arr2.binarySearchUsingLoop(key: 4) ?? "Fail to search")
 print(arr2.binarySearchUsingLoop(key: 5) ?? "Fail to search")
 
 
-let binaryNode27 = BinaryNode(27)
-let binaryNode31 = BinaryNode(31, left: binaryNode27)
-let binaryNode26 = BinaryNode(26, right: binaryNode31)
-let binaryNode12 = BinaryNode(12)
-let binaryNode3 = BinaryNode(3)
-let binaryNode7 = BinaryNode(7, left: binaryNode3, right: binaryNode12)
-let binaryNode18 = BinaryNode(18, left: binaryNode7, right: binaryNode26)
+var binaryNode27: BinaryNode<Int>? = BinaryNode(27)
+var binaryNode31: BinaryNode<Int>? = BinaryNode(31, left: binaryNode27)
+var binaryNode26: BinaryNode<Int>? = BinaryNode(26, right: binaryNode31)
+var binaryNode12: BinaryNode<Int>? = BinaryNode(12)
+var binaryNode3: BinaryNode<Int>? = BinaryNode(3)
+var binaryNode7: BinaryNode<Int>? = BinaryNode(7, left: binaryNode3, right: binaryNode12)
+var binaryNode18: BinaryNode<Int>? = BinaryNode(18, left: binaryNode7, right: binaryNode26)
 
-let binarySearchTree = BinarySearchTree(root: binaryNode18)
+var binarySearchTree = BinarySearchTree(root: binaryNode18!)
 print(binarySearchTree.inorder())
 
 print("search")
@@ -42,11 +42,18 @@ binarySearchTree.insert(BinaryNode(1))
 print(binarySearchTree.inorder())
 
 
+print("remove")
+//print(binarySearchTree.remove(key: 1))
+//print(binarySearchTree.remove(key: -1))
+//print(binarySearchTree.inorder())
+//
+//print(binarySearchTree.remove(key: 31))
+//print(binarySearchTree.inorder())
+//
+//print(binarySearchTree.remove(key: 7))
+//print(binarySearchTree.inorder())
+//print(binarySearchTree.remove(key: 18))
 
-print(binarySearchTree.remove(key: 1))
-print(binarySearchTree.remove(key: -1))
+print(binarySearchTree.remove(key: 26))
 print(binarySearchTree.inorder())
-
-print(binarySearchTree.remove(key: 31))
-print(binarySearchTree.inorder())
-
+print(binaryNode26?.right?.data)
