@@ -10,57 +10,57 @@ import DataStructure
 
 class BinarySearchTree<Element: Comparable>: BinaryTree<Element> {
     
+    func insert(_ newElement: BinaryNode<Element>) {
+        guard !self.isEmpty else {      // 트리가 비어있는 경우, root를 노드로 설정
+            self.root = newElement
+            return
+        }
+        
+        var node: BinaryNode? = root
+        while let tmpNode = node {
+            guard tmpNode != newElement else {
+                fatalError("Disable to insert exsisting data.")
+            }
+            
+            if tmpNode > newElement {
+                if tmpNode.left == nil {            // 왼쪽 노드가 비어있으면, 새 원소 추가
+                    tmpNode.left = newElement
+                    return
+                }
+                else {
+                    node = tmpNode.left
+                }
+            }
+            else {
+                if tmpNode.right == nil {           // 오른쪽 노드가 비어있으면, 새 원소 추가
+                    tmpNode.right = newElement
+                    return
+                }
+                else {
+                    node = tmpNode.right
+                }
+            }
+        }
+    }
+    
     func search(key: Element) -> BinaryNode<Element>? {
         guard !self.isEmpty else {
             return nil
         }
         
         var node: BinaryNode? = root
-        while let tmp = node {
-            if tmp.data > key {
-                node = tmp.left
-            }
-            else if tmp.data < key {
-                node = tmp.right
-            }
-            else {
+        while let tmpNode = node {
+            guard tmpNode.data == key else {
                 return node
             }
+            
+            node = tmpNode.data > key ? tmpNode.left : tmpNode.right
         }
         
         return nil
     }
     
-    func insert(_ newElement: BinaryNode<Element>) {
-        guard !self.isEmpty else {
-            return
-        }
-        var node: BinaryNode? = root
-        
-        while let tmp = node {
-            if tmp.data > newElement.data {
-                if tmp.left == nil {
-                    tmp.left = newElement
-                    return
-                }
-                else {
-                    node = tmp.left
-                }
-            }
-            else if tmp.data < newElement.data {
-                if tmp.right == nil {
-                    tmp.right = newElement
-                    return
-                }
-                else {
-                    node = tmp.right
-                }
-            }
-            else {
-                fatalError("Disable to insert exsisting data.")
-            }
-        }
-    }
+    
     
     func remove(key: Element) -> Element? {
         // 트리가 비어있으면 nil 반환
@@ -71,14 +71,14 @@ class BinarySearchTree<Element: Comparable>: BinaryTree<Element> {
         var targetNode = root
         var parentNode: BinaryNode<Element>? = nil
         
-        while let tmp = targetNode {
-            if tmp.data > key {
+        while let tmpNode = targetNode {
+            if tmpNode.data > key {
                 parentNode = targetNode
-                targetNode = tmp.left
+                targetNode = tmpNode.left
             }
-            else if tmp.data < key {
+            else if tmpNode.data < key {
                 parentNode = targetNode
-                targetNode = tmp.right
+                targetNode = tmpNode.right
             }
             else {
                 break
@@ -127,9 +127,9 @@ class BinarySearchTree<Element: Comparable>: BinaryTree<Element> {
                 successor.right = target.right
             }
             else {                              // 오른쪽 서브트리가 있는 경우
-                while let tmp = successor.right {
+                while let tmpNode = successor.right {
                     successorParent = successor
-                    successor = tmp
+                    successor = tmpNode
                 }
                 
                 successorParent.right = nil
