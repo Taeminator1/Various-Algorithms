@@ -38,3 +38,12 @@ print(binarySearchTree.preorder())
 print(binarySearchTree.postorder())
 
 binarySearchTree.remove(key: 3)
+print(binarySearchTree.inorder())
+binarySearchTree.remove(key: 35)
+print(binarySearchTree.inorder())
+
+let binarySearchTree2: BinarySearchTree<Int> = BinarySearchTree()
+binarySearchTree2.insert(BinaryNode(10))
+binarySearchTree2.insert(BinaryNode(16))
+binarySearchTree2.remove(key: 16)
+print(binarySearchTree2.inorder())
