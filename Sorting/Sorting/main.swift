@@ -9,7 +9,7 @@ import Foundation
 
 print("Hello, World!")
 
-//var arr: [Int] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
+var arr: [Int] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
 //var arr: [Int] = []
 
 //print(arr.insertionSorted(by: <))
@@ -32,6 +32,11 @@ print("Hello, World!")
 //arr.quickSort(by: >)
 //print(arr)
 
+//print(arr.quickSorted2(by: >))
+//print(arr)
+//arr.quickSort2(by: >)
+//print(arr)
+
 //print(arr.heapSorted(by: >))
 //print(arr)
 //arr.heapSort(by: >)
@@ -39,7 +44,6 @@ print("Hello, World!")
 
 var arr2: [UInt] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
 //var arr2: [UInt] = []
-
 print(arr2.radixSorted())
 print(arr2)
 arr2.radixSort()

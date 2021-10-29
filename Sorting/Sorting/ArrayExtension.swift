@@ -28,7 +28,8 @@ extension Array where Self.Element : Comparable {
     }
     
     mutating func insertionSort(by: ByType = (<)) {
-        insertionSortFunction(&self, by)
+//        insertionSortFunction(&self, by)
+        self = self.insertionSorted(by: by)
     }
     
     private func insertionSortFunction(_ input: inout [Element], _ by: ByType) {
@@ -57,7 +58,8 @@ extension Array where Self.Element : Comparable {
     }
     
     mutating func selectionSort(by: ByType = (<)) {
-        selectionSortFunction(&self, by)
+//        selectionSortFunction(&self, by)
+        self = self.selectionSorted(by: by)
     }
     
     private func selectionSortFunction(_ input: inout [Element], _ by: ByType) {
@@ -83,7 +85,8 @@ extension Array where Self.Element : Comparable {
     }
     
     mutating func mergeSort(by: ByType = (<)) {
-        mergeSortFunction(&self, 0, self.count - 1, by)
+//        mergeSortFunction(&self, 0, self.count - 1, by)
+        self = self.mergeSorted(by: by)
     }
     
     private func mergeSortFunction(_ input: inout [Element], _ firstIndex: Int, _ lastIndex: Int, _ by: ByType) {
@@ -134,7 +137,7 @@ extension Array where Self.Element : Comparable {
 }
 
 
-// MARK:- Quick Sort
+// MARK:- Quick Sort1
 // Time Complexity: O(n * log n)
 extension Array where Self.Element : Comparable {
 
@@ -145,7 +148,8 @@ extension Array where Self.Element : Comparable {
     }
     
     mutating func quickSort(by: ByType = (<)) {
-        quickSortFunction(&self, 0, self.count - 1, by)
+        self = self.quickSorted(by: by)
+//        quickSortFunction(&self, 0, self.count - 1, by)
     }
     
     private func quickSortFunction(_ input: inout [Element], _ startIndex: Int, _ lastIndex: Int, _ by: ByType) {
@@ -190,6 +194,23 @@ extension Array where Self.Element : Comparable {
     }
 }
 
+// MARK:- Quick Sort2
+extension Array where Self.Element : Comparable {
+    func quickSorted2(by: ByType = (<)) -> [Element] {
+        if self.isEmpty { return [] }
+        
+        var res: [Element] = self
+        let pivot = res.remove(at: 0)
+        let lesser = res.filter { by($0, pivot) }
+        let greater = res.filter { !by($0, pivot) }
+        
+        return lesser.quickSorted2(by: by) + [pivot] + greater.quickSorted2(by: by)
+    }
+    
+    mutating func quickSort2(by: ByType = (<)) {
+        self = self.quickSorted2(by: by)
+    }
+}
 
 // MARK:- Heap Sort
 // Time Complexity: O(n * log n)
@@ -200,7 +221,8 @@ extension Array where Self.Element : Comparable {
     }
     
     mutating func heapSort(by: @escaping ByType = (<)) {
-        self = heapSortFunction(by)
+//        self = heapSortFunction(by)
+        self = self.heapSorted(by: by)
     }
     
     private func heapSortFunction(_ by: @escaping ByType) -> [Element] {
@@ -228,7 +250,8 @@ extension Array where Self.Element : UnsignedInteger {
     }
     
     mutating func radixSort() {
-        radixSortFunction(&self)
+//        radixSortFunction(&self)
+        self = self.radixSorted()
     }
     
     func radixSortFunction(_ input: inout [Element]) {
