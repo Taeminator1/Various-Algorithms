@@ -32,10 +32,10 @@ var arr: [Int] = [27, 10, 12, 20, 25, 13, 15, 22, 15]
 //arr.quickSort(by: >)
 //print(arr)
 
-//print(arr.quickSorted2(by: >))
-//print(arr)
-//arr.quickSort2(by: >)
-//print(arr)
+print(arr.simpleQuickSorted(by: >))
+print(arr)
+arr.simpleQuickSort(by: >)
+print(arr)
 
 //print(arr.heapSorted(by: >))
 //print(arr)

@@ -137,7 +137,7 @@ extension Array where Self.Element : Comparable {
 }
 
 
-// MARK:- Quick Sort1
+// MARK:- Quick Sort
 // Time Complexity: O(n * log n)
 extension Array where Self.Element : Comparable {
 
@@ -194,9 +194,11 @@ extension Array where Self.Element : Comparable {
     }
 }
 
-// MARK:- Quick Sort2
+// MARK:- Simple Quick Sort
+// Time Complexity: O(n * log n)
+// It uses memory to copy lesser and greater array.
 extension Array where Self.Element : Comparable {
-    func quickSorted2(by: ByType = (<)) -> [Element] {
+    func simpleQuickSorted(by: ByType = (<)) -> [Element] {
         if self.isEmpty { return [] }
         
         var res: [Element] = self
@@ -204,11 +206,11 @@ extension Array where Self.Element : Comparable {
         let lesser = res.filter { by($0, pivot) }
         let greater = res.filter { !by($0, pivot) }
         
-        return lesser.quickSorted2(by: by) + [pivot] + greater.quickSorted2(by: by)
+        return lesser.simpleQuickSorted(by: by) + [pivot] + greater.simpleQuickSorted(by: by)
     }
     
-    mutating func quickSort2(by: ByType = (<)) {
-        self = self.quickSorted2(by: by)
+    mutating func simpleQuickSort(by: ByType = (<)) {
+        self = self.simpleQuickSorted(by: by)
     }
 }
 
